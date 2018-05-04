@@ -2026,7 +2026,7 @@ Matrix sumc (const Matrix & A)
 	  error("Matrices not conformable for multiplication in SCYTHE::gaxpy()");
 	} else if (A.rowsize == C.rowsize && B.colsize == C.colsize){
 	    // Case 4: A is n x k and B is k x j
-	  register Matrix newdata(A.rowsize, B.colsize);
+	  Matrix newdata(A.rowsize, B.colsize);
 	    for (int i = 0; i < A.rowsize; ++i){
 		for (int j = 0; j < B.colsize; ++j){
 		    newdata.data[i*B.colsize + j] = C.data[i*B.colsize + j];
@@ -2052,7 +2052,7 @@ Matrix sumc (const Matrix & A)
  */
 // original
     Matrix crossprod(const Matrix& A){
-      register Matrix newdata(A.colsize, A.colsize);
+      Matrix newdata(A.colsize, A.colsize);
 
 	for (int i = 0; i < A.colsize; ++i){
 	    for (int j = i; j < A.colsize; ++j){
@@ -2070,7 +2070,7 @@ Matrix sumc (const Matrix & A)
     
     // better loop ordering
     Matrix crossprod2(const Matrix& A){
-      register Matrix newdata(A.colsize, A.colsize);
+      Matrix newdata(A.colsize, A.colsize);
 	const int nr = A.rowsize;
 	const int nc = A.colsize;
 	
@@ -2267,7 +2267,7 @@ Matrix sumc (const Matrix & A)
 	  error("Matrices not conformable for multiplication");
 	} else {
 	    // Case 4: A is n x k and B is k x j
-	  register Matrix newdata(A.rowsize, B.colsize);
+	  Matrix newdata(A.rowsize, B.colsize);
 	    for (int i = 0; i < A.rowsize; ++i) {
 		for (int j = 0; j < B.colsize; ++j) {
 		    newdata.data[i*B.colsize + j] = 0.0;
