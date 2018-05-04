@@ -1,0 +1,19 @@
+Package: Matching
+Version: 4.9-2
+Date: 2015-12-25
+Title: Multivariate and Propensity Score Matching with Balance
+        Optimization
+Author: Jasjeet Singh Sekhon <sekhon@berkeley.edu>
+Maintainer: Jasjeet Singh Sekhon <sekhon@berkeley.edu>
+Description: Provides functions for multivariate and propensity score matching 
+             and for finding optimal balance based on a genetic search algorithm. 
+             A variety of univariate and multivariate metrics to
+             determine if balance has been obtained are also provided.
+Depends: R (>= 2.6.0), MASS (>= 7.2-1), graphics, grDevices, stats
+Suggests: parallel, rgenoud (>= 2.12), rbounds
+License: GPL-3
+URL: http://sekhon.berkeley.edu/matching
+NeedsCompilation: yes
+Packaged: 2015-12-25 09:29:41 UTC; sekhon
+Repository: CRAN
+Date/Publication: 2015-12-25 14:31:37

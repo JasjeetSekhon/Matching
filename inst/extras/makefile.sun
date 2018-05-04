@@ -1,0 +1,44 @@
+CXX=/opt/sun/sunstudio12/bin/CC
+CC=/opt/sun/sunstudio12/bin/cc
+
+SHLIB_CXXLD=/opt/sun/sunstudio12/bin/CC -G -KPIC -lCrun -fast -lmtsk -mt 
+
+#Non-parallel options
+CXXFLAGS=-fast -KPIC -m64 -library=stlport4 -xipo -I/usr/local/lib64/R/include -I/usr/local/lib64/R/include  -I/usr/local/include
+CFLAGS=-fast -KPIC -m64 -xipo -I/usr/local/lib64/R/include -I/usr/local/lib64/R/include  -I/usr/local/include
+
+#setenv PARALLEL 2
+#set OMP_NUM_THREADS=2
+#/opt/sun/sunstudio12/lib/amd64
+#/opt/sun/sunstudio12/rtlibs/amd64
+#env LD_LIBRARY_PATH=/opt/sun/sunstudio12/rtlibs/amd64:/opt/sun/sunstudio12/lib/amd64
+#CXXFLAGS=-fast -KPIC -m64  -library=stlport4  -xtarget=opteron -xchip=opteron -xvector=simd -xprefetch -xprefetch_level=3   -xcache=64/64/2:1024/64/16 -xalias_level=compatible -xrestrict -xipo  -xarch=sse3a -xautopar -xloopinfo -xopenmp
+#CFLAGS=-fast -KPIC -m64  -xtarget=opteron -xchip=opteron -xvector=simd -xprefetch -xprefetch_level=3   -xcache=64/64/2:1024/64/16 -xalias_level=strong -xrestrict -xipo -xarch-sse3a -xautopar -xloopinfo  -xopenmp
+
+R_XTRA_CXXFLAGS=-I/usr/local/lib64/R/include -I/usr/local/lib64/R/include  -I/usr/local/include
+
+SOURCES = matching.cc scythematrix.cc cblas_dasum.c cblas_dgemm.c cblas_dscal.c
+
+HEADERS = matching.h scythematrix.h cblas_dasum.c cblas_dgemm.c cblas_dscal.c
+OBJS = matching.o scythematrix.o cblas_dasum.o cblas_dgemm.o cblas_dscal.o
+
+PROGRAM = Matching.so
+
+#$(PROGRAM):	$(OBJS) $(LIBS)
+#		$(SHLIB_CXXLD) $(DYLIB_LDFLAGS) $(OBJS) -o $(PROGRAM)
+#		@echo library $(PROGRAM) ready.
+
+ALL_CXXFLAGS = $(R_XTRA_CXXFLAGS) $(SHLIB_CXXFLAGS) $(CXXFLAGS)
+
+$(PROGRAM):	$(OBJS) 
+		$(SHLIB_CXXLD) $(ALL_CXXFLAGS) $(OBJS) -o $(PROGRAM)
+		@echo library $(PROGRAM) ready.
+
+clean:
+	rm -f core*
+	rm -f *.o
+
+
+
+
+

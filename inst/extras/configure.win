@@ -1,0 +1,7 @@
+#
+# We have a different Makevars.win for gcc3 (R-2.5.x) and gcc4 (R-2.6)
+#
+
+if [ "$BUILD" = "GCC4" ]; then
+    mv inst/extras/Makevars.win.gcc4 src/Makevars.win
+fi

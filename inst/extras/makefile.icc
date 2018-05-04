@@ -1,0 +1,44 @@
+CXX=icc -gcc-version=400 -static-libcxa -i-static
+CC=icc -gcc-version=400 -static-libcxa -i-static
+DYLIB_LD=icc -gcc-version=400 -static-libcxa -i-static
+SHLIB_CXXLD=icc -gcc-version=400 -lsvml -L /opt/intel/cc/9.1.038/lib -static-libcxa -i-static -lstdc++
+SHLIB_LD=icc -gcc-version=400 -lsvml -L /opt/intel/cc/9.1.038/lib -static-libcxa -i-static -lstdc++
+
+CXXFLAGS=-fast -static
+CFLAGS=-fast -static
+
+#CXXFLAGS=-O3 -no-prec-div -xP -openmp -static -parallel -rcd -pc32 -opt_report
+#CFLAGS=-O3 -no-prec-div -xP -openmp -static -parallel -opt_report
+
+#CXXFLAGS=-O3 -openmp -axN -ssp -fp-model fast=2 -funroll-loops -msse2 -ipo -no-prec-div -static -finline-functions 
+#CFLAGS=-O3 -openmp -axN -ssp -fp-model fast=2 funroll-loops -msse2 -ipo -no-prec-div -static -finline-functions
+
+#CXXFLAGS=-O3 -openmp -xP -ssp -funroll-loops -no-prec-div -static -finline-functions 
+#CFLAGS=-O3 -openmp -xP -ssp -funroll-loops -no-prec-div -static -finline-functions
+
+SOURCES = matching.cc scythematrix.cc 
+
+HEADERS = matching.h scythematrix.h 
+#OBJS = $(SOURCES:.cc=.o cblas_dgemm.o)
+OBJS = matching.o scythematrix.o 
+
+PROGRAM = Matching${SHLIB_EXT}
+
+#$(PROGRAM):	$(OBJS) $(LIBS)
+#		$(SHLIB_CXXLD) $(DYLIB_LDFLAGS) $(OBJS) -o $(PROGRAM)
+#		@echo library $(PROGRAM) ready.
+
+ALL_CXXFLAGS = $(R_XTRA_CXXFLAGS) $(PKG_CXXFLAGS) $(CXXPICFLAGS) $(SHLIB_CXXFLAGS) $(CXXFLAGS)
+
+$(PROGRAM):	$(OBJS) 
+		$(SHLIB_CXXLD) $(SHLIB_CXXLDFLAGS) $(PKG_CXXLDFLAGS) $(ALL_CXXFLAGS) $(OBJS) -o $(PROGRAM)
+		@echo library $(PROGRAM) ready.
+
+clean:
+	rm -f core*
+	rm -f *.o
+
+
+
+
+

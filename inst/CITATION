@@ -1,0 +1,55 @@
+citHeader("To cite 'Matching' in publications use:")
+
+citEntry(
+  entry = "Article",
+  title        = "Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The {Matching} Package for {R}",
+  author       = personList(as.person("Jasjeet S. Sekhon")),
+  journal      = "Journal of Statistical Software",
+  year         = "2011",
+  volume       = "42",
+  number       = "7",
+  pages        = "1--52",
+  url          = "http://www.jstatsoft.org/v42/i07/",
+
+  textVersion  =
+  paste("Jasjeet S. Sekhon (2011).",
+        "Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R.",
+        "Journal of Statistical Software, 42(7), 1-52.",
+        "URL http://www.jstatsoft.org/v42/i07/.")
+)
+
+citEntry(header="To refer to the theory on which this package is based:",
+  entry="Article",
+  title = "Genetic Matching for Estimating Causal Effects: A General Multivariate Matching Method for Achieving Balance in Observational Studies",
+  author  = personList(as.person("Alexis Diamond"),as.person("Jasjeet S. Sekhon")),
+  journal = "Review of Economics and Statistics",
+  volume = "95",
+  number = "3",
+  pages = "932--945",
+  year = "2013",
+  url  = "http://sekhon.berkeley.edu/papers/GenMatch.pdf", 
+
+  textVersion  =
+  paste("Alexis Diamond and Jasjeet S. Sekhon",
+        "Genetic Matching for Estimating Causal Effects: A General Multivariate Matching Method for Achieving Balance in Observational Studies.",
+        "Review of Economics and Statistics. 95 (3): 932--945. 2013.")
+)
+
+citEntry(header="Further developing the theory and practice:",
+  entry="Article",
+  title = "A Matching Method For Improving Covariate Balance in Cost-Effectiveness Analyses",
+  author = personList(as.person("Jasjeet Singh Sekhon"),as.person("Richard D. Grieve")),
+  journal      = "Health Economics",
+  volume = "21",
+  number = "6",
+  pages= "695--714",
+  year = "2012",
+
+  textVersion  =
+  paste("Jasjeet Singh Sekhon and Richard D. Grieve (2012).", 
+    "A Matching Method For Improving Covariate Balance in Cost-Effectiveness Analyses.",
+    "Health Economics, 21(6), 695-714."
+    )
+)
+
+citFooter("BibTeX entries for LaTeX users: use\n", sQuote('toBibtex(citation("Matching"))'))

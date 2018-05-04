@@ -1,0 +1,3 @@
+PKG_CFLAGS = -finline-func -fweb -funit-at-a-time -ftracer -funswitch-loops -frename-registers -ffast-math -funroll-loops -fexpensive-optimizations 
+PKG_CXXFLAGS = -finline-func -fweb -funit-at-a-time -ftracer -funswitch-loops -frename-registers -ffast-math -funroll-loops -fexpensive-optimizations 
+PKG_LIBS = -lRblas

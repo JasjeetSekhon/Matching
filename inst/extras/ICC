@@ -1,0 +1,6 @@
+icc -I/usr/local/lib64/R/include -I/usr/local/lib64/R/include  -I/usr/local/include  -fast -O3 -align -fpic -c cblas_dgemm.c -o cblas_dgemm.o
+icc -I/usr/local/lib64/R/include -I/usr/local/lib64/R/include -I/usr/local/include -fast -O3 -align -fpic -c matching.cc -o matching.o
+icc -I/usr/local/lib64/R/include -I/usr/local/lib64/R/include -I/usr/local/include -fast -O3 -align -fpic -c scythematrix.cc -o scythematrix.o
+icc -shared -lstdc++ -L/usr/local/lib64 -o Matching.so cblas_dgemm.o matching.o scythematrix.o
+
+

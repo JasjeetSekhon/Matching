@@ -1,0 +1,303 @@
+Change Log for public releases:
+
+2015-12-25 Version: 4.9-2
+	* Minor version number increased because of duplicate posting on
+	CRAN.
+
+2015-12-25 Version: 4.9-1
+	* NAMESPACES: Improve imports
+
+2015-07-18 Version: 4.9-0
+	* Matching.R: balance(): the standardized pooled difference now
+	uses the pooled variance as in Rosenbaum and Rubin (1985), instead
+	of the total variance. This is not printed by default by
+	MatchBalance(). One can obtain this statistic from directly
+	calling balanceUV().
+
+2013-06-28 Version: 4.8-3.4
+	* configure: Check for compilers before AC_PROG_CC
+	* configure.ac: Check for compilers before AC_PROG_CC
+	* matching.cc: Switch to using internal blas headers on OS X
+	* DESCRIPTION: Updated usage of 'Depends' and 'Suggests'
+	* GenMatching.R: Include require("rgenoud") as the package is now suggested, but not required.
+
+2013-06-28 Version: 4.8-3.1
+	* tests: suppress message on load in the test .R files
+
+2013-06-28 Version: 4.8-3
+	* GenMatching.R: now uses the 'parallel' package instead of the
+	deprecated package 'snow'
+
+2013-04-26 Version: 4.8-2
+	* Makevars.win: removes the -ffriend-injection option
+	* configure.ac: removes the -ffriend-injection option
+	* matching.cc: fully resolves calls to seqa, ones, zeros, and
+	* scythematrix.cc: fully resolves calls to seqa, ones, zeros
+	* scythematrix.h: makes seqa, ones, zeros static parentheses
+	around evalution to move ambiguity
+
+2013-02-16 Version: 4.8-1.2
+	* GenMatching.R: removes assignment to .GlobalEnv in GENclusterExport.
+
+2013-02-15 Version: 4.8-1.1
+	Only trivial internal code changes. Changed all as.real() to as.double(), as as.real() no longer work
+	in R-devel.
+
+2012-09-27 Version: 4.8-1
+	Minor update to resolve issues with API changes in R-devel
+
+	* Matching.R: EISPACK = TRUE now depracated for eigen(). See we
+	only look at the values anyways, we now revert to the R default,
+	which is EISPACK=FALSE.
+	Changed Mks.test() to handle warnings for ties in
+	the ks.test. Removes call to .C in the base 'stat' package.
+	* GenMatching.R: EISPACK = FALSE now for eigen().  Internal
+	function Mks.test no longer takes the MC argument
+	* GenBalance.R: Internal function Mks.test no longer takes the MC argument
+
+2012-01-19 Version: 4.8-0
+
+	* Makevars.win.gcc4: no more --ffast-math because it conflicts with -pedantic on some platforms
+	* Makevars.win: no more --ffast-math
+	* configure.ac: no more -ffast-math, and update test code to #include <cmath> and RC(XX)FLAGS
+	* configure: updated as above
+	* matching.cc: switch exit() to error() and fprintf to Rpintf, now using packageStartupMessage .onAttach
+	* scythematrix.cc: switch exit() to error() and fprintf to Rpintf
+	* scythematrix.h: switch exit() to error() and fprintf to Rpintf
+
+Version 4.7-14
+
+Minor update. Corrected citation information in .onAttach.
+
+Version 4.7-13
+
+Minor update. Updated references in CITATIONS an in *Rd files.
+
+Version 4.7-12
+
+Minor update. CITATION file for Journal of Statistical Software
+
+Version 4.7-11
+
+Minor update. ks.boot() now conducts alternative tests like ks.test()
+
+Version 4.7-10
+
+Minor update. GenMatch() now checks to make sure that the treatment
+indicator (the 'Tr' object) contains both treated and control
+observations. If not, GenMatch() stops and returns an error message.
+
+Version 4.7-9
+
+Minor update. Made calls to functions in the standard C++ library
+explicit. The Sun Studio C++ compiler required this change.
+
+Version 4.7-8
+
+Minor update. The Sun Studio C++ compiler on Solaris required adding #include <stdlib.h>.
+
+Version 4.7-7
+
+Minor update. Changed print format to conform to ISO C++ in the display() function in 
+matching.cc:2883.
+
+Removed the empty \details{} section in GenMatch.Rd.
+
+Version 4.7-6
+
+Added suggested package "rbounds: Perform Rosenbaum bounds sensitivity tests for matched data"
+
+Corrected overloading ambiguity between "sqrt(double)" and "std::sqrt(float)"
+that prevented building on Solaris.
+
+Version 4.7-5
+
+Minor update.  Released in order to be compatible with R-devel
+(Windows).
+
+Version 4.7-3
+
+Released in order to be compatible with R-2.8.  Also removed the
+balanceMV() function.
+
+Version 4.6-2
+
+Minor release. Explicitly declares header files as required by gcc
+4.3. Improves warning message when Y==NULL and BiasAdjust==TRUE.
+
+Version 4.6-1
+
+Minor release. Corrected documentation, functionality and error
+handling for user provided fitness function ('fit.func') in the
+GenMatch function.  Provided S3 methods for printing summary functions
+to improving printing.
+
+Version 4.5-3
+
+Minor release.  Improved debugging for input parameters for Match(),
+GenMatch() and Matchby().  Improves checking for if
+length(Tr)!=length(Y) etc.  And coerces Tr and Y by as.real instead of
+as.matrix.
+
+Version 4.5-2
+
+MAJOR RELEASE with new features.  
+
+Matchby() is now much faster and can now calculate Abadie-Imbens SEs
+(via the AI=TRUE option) and the function returns "index.treated" and
+"index.control", and it can be used with MatchBalance().
+
+Var.calc estimates are now an order of magnitude faster in Match()
+because they have been moved to C++. And they can now be estimated via
+Matchby() which makes them even faster.
+
+We now have a configure.win to deal with gcc4 (R-develop) and gcc3
+(R-release) as of R-2.5x.
+
+4.4-14
+
+Version for the Journal of Statistical Software article.  Improved
+documentation, comments in the C++ code, added test cases to so
+regression tests are now done in the package itself (via R CMD check),
+and included makefiles in "extras" for icc and Sun Studio.  Code now
+works with Sun Studio.
+
+4.4.10, 4.4.7
+
+Improvements in warning messsages and documentation
+
+4.4.6
+
+Major speed improvements.  We no longer do any calculations for
+observations in the same treatment group.  No longer using BLAS if the
+weight matrix is diagonal.  BLAS, in this case, were slower than
+carefully written loops which gcc (and icc) can optimize.
+
+
+4.4-1
+
+MatchBalance now actually returns all of its results as a list so
+there is no need to call balanceUV() directly.
+
+4.4.0
+
+Major speed improvements on all plaforms for both Match() and
+GenMatch().  BLAS are now more selectively used: level 1 blas instead
+of dgemm and no use of BLAS on OS X for many operations (OS X BLAS
+were slower because of the OS X malloc problem).
+
+4.3-1
+
+GenMatch() now prints warnings when there are no valid matches, just like Match() 
+
+4.2-6
+
+Corrects minor warning messages generated by R CMD check with R-rc_2007-04-19_r41248.
+
+4.2-5
+
+Warning that Bias Adjustment cannot be done if replace=FALSE or ties=FALSE
+
+4.2-4
+
+Minor change.  In MatchBalance: check if options("na.action") is equal
+to na.omit, na.exclude or na.fail moved to after we know that there
+are NAs.
+
+4.2-3
+
+MatchBalance prints loud warning messages when missing values are
+inputed, but it will not, by default, stop.  IT IS HIGHLY RECOMMENDED
+THAT YOU TEST IF THE MISSING VALUES ARE BALANCED INSTEAD OF JUST
+DELETING THEM.
+
+ks.boot is now faster (uses a fast version of ks.test).  And the cut
+point for the test is now the length of treated category.
+
+Version 4.1-7
+
+Documentation has been updated to be consistent with the paper
+introducing the package: "Multivariate and Propensity Score Matching
+Software with Automated Balance Optimization: The Matching package for
+R".  See http://sekhon.berkeley.edu/papers/MatchingJSS.pdf
+
+Version 4.1-3
+
+Added the "CommonSupport" option to Match and GenMatch.  Made sure to
+note in documentation that people should use the caliper option
+instead.
+
+GenMatch now defaults to using floating point weights instead of
+integers---data.type.integer=FALSE in GenMatch is now the default!
+
+Removed #include <sstream> in sycthmatrix.h. Not needed and causes
+problem in pre 3.3 gcc 
+
+Version 4.0-9
+
+
+The Match() function is *vastly* faster for large datasets with many
+ties.  At the expense of slightly more memory, the Match() function is
+now several orders of magnitude faster for such problems.  For
+example, one dataset with 30,000 observations results in 6 million
+matches due to ties.  For this problem, Match() now takes 60 seconds
+instead of an hour (on an Opteron 254).  The speedup occurs because
+rbind usage has been all but eliminated. And memcpy is now effectively
+used to copy memory objects instead of loops (the former is better
+optimized by compilers).
+
+updated help on nboots in GenMatch
+
+Version 4.0-6
+
+Match() and GenMatch now support the "ties" option.  The default
+behavior of the "replace" option has also been changed.
+
+If the dataset is large and there are many ties between potential
+matches, setting ties=FALSE often results in a large speedup with
+negligible bias.  
+
+Specifically, the ties option controls whether ties should be handled
+deterministically.  By default ties==TRUE. If, for example, one
+treated observation matches more than one control observation, the
+matched dataset will include the multiple matched control observations
+and the matched data will be weighted to reflect the multiple matches.
+The sum of the weighted observations will still equal the original
+number of observations. If ties==FALSE, ties will be randomly broken.
+This in general is not a good idea because the variance of Y will be
+underestimated (Abadie and Imbens 2005).  But if the dataset is large
+and there are many ties between potential matches, setting ties=FALSE
+often results in a large speedup with negligible bias. Whether two
+potential matches are close enough to be considered tied, is
+controlled by the distance.tolerance option.
+
+NOTE ties=FALSE in Matchby by default while ties=TRUE in Match and GenMatch.
+
+added warnings if nrow(BalanceMatrix) != length(Tr), or nrow(X) !=
+length(Tr).  Also checks for the dimensionality of V and Z.
+
+3.8-2: 
+
+Added index.dropped to the return object list for Match().  This is a
+vector containing the observation numbers from the original data which
+were dropped (if any) in the matched dataset because of various
+options such as caliper and exact.  If no observations
+were dropped, this index will be NULL.
+
+3.7-3:
+Fixed some typos in help pages.
+add standard packages to DESCRIPTION
+
+3.7-1:
+
+The intelligence of the install script generated by configure.ac has
+been improved.  In now checks if the compiler supports the following
+group of arguments separately:
+
+MYCXXFLAGS0="-O3"
+MYCXXFLAGS1="-finline-functions -ffast-math -funroll-loops -fexpensive-optimizations"
+MYCXXFLAGS2="-funswitch-loops -fgcse-after-reload -fstrict-aliasing -freorder-blocks -fsched-interblock"
+
+The last set are not supported on pre 4.0 gcc compilers (unless they
+have been backported).
+

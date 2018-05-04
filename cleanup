@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Cleanup our user created Makevars configure
+rm -f src/Makevars 
+
+# Revert to a clean (non-Darwin) state
+
+if test -f src/malloc.c; then
+ rm src/malloc.c
+fi
+
+if test ! -f src/cblas.h; then
+ cp inst/extras/cblas.h src/cblas.h
+fi
+
+if test ! -f src/cblas_dgemm.c; then
+ cp inst/extras/cblas_dgemm.c src/cblas_dgemm.c
+fi
+
+
+
+  

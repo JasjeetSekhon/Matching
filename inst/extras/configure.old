@@ -1,0 +1,56 @@
+#!/bin/sh
+
+#Setup optimization flags.  This significantly improves performance.
+
+# Version 2.1-2+ We now use makevars on OS X all platforms instead of
+# the makefile because of build issues on OS X.  This requires moving
+# files around because we do not want our cblas wrappers compiled on
+# OS X, but we need to assume them for all other platforms.
+
+#On Windows this script does *not* need to be run.  On Windows,
+#Makevars.win should simply be used because we can assume that we are
+#using the mingw32 compiler
+
+# -fstrict-aliasing -freorder-blocks -fsched-interblock is added for OS X (already included in the Linux gcc -O2 option
+# does no harm on Linux
+
+#Matching Version 3.4.4+: we need to add the -ffriend-injection argument for g++
+#versions 4.1+ because ARM-style name-injection of friend declarations
+#is no longer the default.  
+
+CXX=`"${R_HOME}/bin/R" CMD config CXX`
+
+echo $CXX | grep g++ > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+
+ CFLAGS="-O3 -finline-functions -funswitch-loops -fgcse-after-reload -ffast-math -funroll-loops -fexpensive-optimizations -fstrict-aliasing -freorder-blocks -fsched-interblock"
+
+ CXXFLAGS="-O3 -finline-functions -funswitch-loops -fgcse-after-reload -ffast-math -funroll-loops -fexpensive-optimizations -fstrict-aliasing -freorder-blocks -fsched-interblock"
+
+ VERSION=`$CXX --version`
+ echo $VERSION | grep "4.1.\|4.2." > /dev/null 2>&1
+ if [ "$?" -eq "0" ]; then
+
+ CXXFLAGS="-O3 -finline-functions -funswitch-loops -fgcse-after-reload -ffast-math -funroll-loops -fexpensive-optimizations -fstrict-aliasing -freorder-blocks -fsched-interblock -ffriend-injection"
+ fi
+
+ echo "PKG_CFLAGS=$CFLAGS" > src/Makevars
+ echo "PKG_CXXFLAGS=$CXXFLAGS" >> src/Makevars
+
+
+# are we on osx?
+# if so, don't compile our own cblas headers
+# and use dmalloc
+UNAME=`uname -a`
+echo $UNAME | grep Darwin > /dev/null 2>&1
+if [ "$?" -eq "0" ]; then
+ cp inst/extras/malloc.c src/malloc.c
+ mv src/cblas_dgemm.c inst/extras
+ mv src/cblas.h inst/extras
+fi
+
+fi
+
+#NOTE: On g5 machines with OS X the following CXXFLAGS generates
+#significantly faster code:
+#PKG_CXXFLAGS="-fast"
