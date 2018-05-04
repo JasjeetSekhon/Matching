@@ -3,7 +3,7 @@ importFrom("stats", "approx", "complete.cases", "ecdf", "ks.test",
            "median", "model.frame", "model.matrix", "model.response",
            "na.pass", "pchisq", "pnorm", "pt", "sd", "terms", "var")
 importFrom("utils", "packageDescription")
-useDynLib(Matching)
+useDynLib(Matching, .registration = TRUE)
 export(balanceUV, ks.boot, Match, Matchby, MatchBalance, qqstats, summary.ks.boot, summary.Match, GenMatch, print.summary.Match, print.summary.ks.boot, print.summary.Matchby)
 S3method(summary, balanceUV)
 S3method(summary, ks.boot)
