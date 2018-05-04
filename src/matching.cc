@@ -264,7 +264,7 @@ extern "C"
     //Master Loop
     for (i=0; i<N; i++)
       {
-	if ( ((int) Tr[i]==1 & All!=1) | (All==1))
+	if ( ( ((int) Tr[i]==1) & (All!=1)) | (All==1))
 	  {
 	    
 	    SumFooWeight = 0;
@@ -463,7 +463,7 @@ extern "C"
       
       // proceed with all observations if All==1
       // but only with treated observations if All=0        
-      if ( (TREATi==1 & All!=1) | (All==1) )
+      if ( ((TREATi==1) & (All!=1)) | (All==1) )
       {
 
 #ifdef __GenMatchBLAS__
@@ -818,7 +818,7 @@ extern "C"
       
       // proceed with all observations if All==1
       // but only with treated observations if All=0        
-      if ( (TREATi==1 & All!=1) | (All==1) )
+      if ( ( (TREATi==1) & (All!=1) ) | (All==1) )
       {
 #ifdef __GenMatchBLAS__
         // this loop is equivalent to the matrix X less the matrix A, which is
@@ -1224,7 +1224,7 @@ extern "C"
 	
 	// proceed with all observations if All==1
 	// but only with treated observations if All=0        
-	if ( (TREATi==1 & All!=1) | (All==1) )
+	if ( ( (TREATi==1) & (All!=1)) | (All==1) )
 	  {
 #ifdef __NBLAS__
 	    if (DiagWeightMatrixFlag!=1)
@@ -1425,7 +1425,7 @@ extern "C"
 	    // distance at last match
             double Distmax = S[MMM];
 
-	    if (restrict_trigger==1 | caliper==1)
+	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
 		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
 		  {
@@ -1835,7 +1835,7 @@ extern "C"
 	
 	// proceed with all observations if All==1
 	// but only with treated observations if All=0        
-	if ( (TREATi==1 & All!=1) | (All==1) )
+	if ( ( (TREATi==1) & (All!=1) ) | (All==1) )
 	  {
 #ifdef __NBLAS__
 	    if (DiagWeightMatrixFlag!=1)
@@ -2015,7 +2015,7 @@ extern "C"
 
 	    Distmax = kth_smallest(DistPot.data, DistPot_size, (M-1));
 
-	    if (restrict_trigger==1 | caliper==1)
+	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
 		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
 		  {
@@ -2612,7 +2612,7 @@ extern "C"
 	    
 	    Distmax = kth_smallest(DistPot.data, DistPot_size, (M-1));
 	    
-	    if (restrict_trigger==1 | caliper==1)
+	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
 		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
 		  {
@@ -2680,7 +2680,7 @@ extern "C"
 	  // distance at last match
 	  double Distmax = S[MMM];
 	  
-	  if (restrict_trigger==1 | caliper==1)
+	  if ( (restrict_trigger==1) | (caliper==1) )
 	    {
 	      if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
 		{
