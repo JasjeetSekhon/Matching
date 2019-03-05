@@ -1,6 +1,6 @@
 Package: Matching
-Version: 4.9-3
-Date: 2018-05-03
+Version: 4.9-5
+Date: 2019-03-05
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Author: Jasjeet Singh Sekhon <sekhon@berkeley.edu>

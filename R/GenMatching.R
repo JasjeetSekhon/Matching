@@ -38,7 +38,7 @@ MatchGenoudStage1 <- function(Tr=Tr, X=X, All=All, M=M, weights=weights,
       {
         Mu.X[k,1] <- sum(X[,k]*weights)/weights.sum;
         eps <- X[,k]-Mu.X[k,1]
-        Sig.X[k,1] <- sqrt(sum(X[,k]*X[,k]*weights)/weights.sum-Mu.X[k,1]^2)
+        Sig.X[k,1] <- sqrt(max(tolerance, sum(X[,k]*X[,k]*weights))/weights.sum-Mu.X[k,1]^2)
         Sig.X[k,1] <- Sig.X[k,1]*sqrt(N/(N-1))
         if(Sig.X[k,1] < tolerance)
           Sig.X[k,1] <- tolerance
@@ -143,7 +143,7 @@ MatchGenoudStage1caliper <- function(Tr=Tr, X=X, All=All, M=M, weights=weights,
       {
         Mu.X[k,1] <- sum(X[,k]*weights)/weights.sum;
         eps <- X[,k]-Mu.X[k,1]
-        Sig.X[k,1] <- sqrt(sum(X[,k]*X[,k]*weights)/weights.sum-Mu.X[k,1]^2)
+        Sig.X[k,1] <- sqrt(max(tolerance, sum(X[,k]*X[,k]*weights))/weights.sum-Mu.X[k,1]^2)
         Sig.X[k,1] <- Sig.X[k,1]*sqrt(N/(N-1))
         if(Sig.X[k,1] < tolerance)
           Sig.X[k,1] <- tolerance        

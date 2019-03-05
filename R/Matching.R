@@ -744,7 +744,7 @@ Rmatch <- function(Y, Tr, X, Z, V, All, M, BiasAdj, Weight, Weight.matrix, Var.c
       {
         Mu.X[k,1] <- sum(X[,k]*weight)/sum(weight)
         eps <- X[,k]-Mu.X[k,1]
-        Sig.X[k,1] <- sqrt(sum(X[,k]*X[,k]*weight)/sum(weight)-Mu.X[k,1]^2)
+        Sig.X[k,1] <- sqrt(max(ccc, sum(X[,k]*X[,k]*weight))/sum(weight)-Mu.X[k,1]^2)
         Sig.X[k,1] <- Sig.X[k,1]*sqrt(N/(N-1))
         if(Sig.X[k,1] < ccc)
           Sig.X[k,1] <- ccc
@@ -2450,7 +2450,7 @@ RmatchLoop <- function(Y, Tr, X, Z, V, All, M, BiasAdj, Weight, Weight.matrix, V
       {
         Mu.X[k,1] <- sum(X[,k]*weight)/sum(weight)
         eps <- X[,k]-Mu.X[k,1]
-        Sig.X[k,1] <- sqrt(sum(X[,k]*X[,k]*weight)/sum(weight)-Mu.X[k,1]^2)
+        Sig.X[k,1] <- sqrt(max(ccc, sum(X[,k]*X[,k]*weight))/sum(weight)-Mu.X[k,1]^2)
         Sig.X[k,1] <- Sig.X[k,1]*sqrt(N/(N-1))
         if(Sig.X[k,1] < ccc)
           Sig.X[k,1] <- ccc        
