@@ -1,5 +1,6 @@
 suppressMessages(library(rgenoud))
 suppressMessages(library(Matching))
+suppressWarnings(RNGversion("3.5.3"))
 
 set.seed(3101)
 data(lalonde)

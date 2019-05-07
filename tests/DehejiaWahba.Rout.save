@@ -1,7 +1,7 @@
 
-R Under development (unstable) (2013-06-27 r63079) -- "Unsuffered Consequences"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin10.8.0 (64-bit)
+R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -23,6 +23,7 @@ Type 'q()' to quit R.
 > #
 > 
 > suppressMessages(library(Matching))
+> suppressWarnings(RNGversion("3.5.3"))
 > 
 > # Replication of Dehejia and Wahba psid3 model.  
 > 
@@ -351,4 +352,4 @@ Variable Name(s): I(re74^2)  Number(s): 10
 > 
 > proc.time()
    user  system elapsed 
-  0.417   0.033   0.442 
+  0.256   0.071   0.320 

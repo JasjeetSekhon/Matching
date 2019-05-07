@@ -6,6 +6,7 @@
 #
 
 suppressMessages(library(Matching))
+suppressWarnings(RNGversion("3.5.3"))
 
 # Replication of Dehejia and Wahba psid3 model.  
 
