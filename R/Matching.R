@@ -286,7 +286,7 @@ Match  <- function(Y=NULL,Tr,X,Z=X,V=rep(1,length(Y)), estimand="ATT", M=1,
     if (!is.null(Weight.matrix))
       {
 
-        if(class(Weight.matrix)=="GenMatch")
+        if(inherits(Weight.matrix, "GenMatch"))
           {
             Weight.matrix = Weight.matrix$Weight.matrix
           }
@@ -1564,7 +1564,7 @@ balanceUV  <- function(Tr, Co, weights=rep(1,length(Co)), exact=FALSE, ks=FALSE,
 summary.balanceUV  <- function(object, ..., digits=5)
   {
 
-    if (class(object) != "balanceUV") {
+    if (!inherits(object,  "balanceUV")) {
       warning("Object not of class 'balanceUV'")
       return(NULL)
     }
@@ -1600,12 +1600,12 @@ summary.balanceUV  <- function(object, ..., digits=5)
 PrintBalanceUV  <- function(BeforeBalance, AfterBalance, ..., digits=5)
   {
 
-    if (class(BeforeBalance) != "balanceUV") {
+    if (!inherits(BeforeBalance,  "balanceUV")) {
       warning("BeforeBalance not of class 'balanceUV'")
       return(NULL)
     }
 
-    if (class(AfterBalance) != "balanceUV") {
+    if (!inherits(AfterBalance, "balanceUV")) {
       warning("AfterBalance not of class 'balanceUV'")
       return(NULL)
     }
@@ -1982,7 +1982,7 @@ MatchBalance <- function(formul, data=NULL, match.out=NULL, ks=TRUE,
       match.out  <- NULL
     }
 
-    if ( (class(match.out) != "Match") & (class(match.out) != "Matchby") & (!is.null(match.out)) ) {
+    if ((!inherits(match.out, "Match")) & (!inherits(match.out, "Matchby")) & (!is.null(match.out)) ) {
       warning("Object not of class 'Match'")
       match.out  <- NULL
     }
@@ -2350,7 +2350,7 @@ summary.ks.boot <- function(object, ..., digits=5)
       return()
     }
 
-    if (class(object) != "ks.boot") {
+    if (!inherits(object,  "ks.boot")) {
       warning("Object not of class 'ks.boot'")
       return()
     }    

@@ -14,6 +14,6 @@ summary(rr2)
 rr  <- Match(Y=Y, Tr=Tr, X=X, M=1, exact=TRUE)
 summary(rr, full=TRUE)
 
-rr$est-rr2$est
-rr$se-rr2$se
-rr$se.standard-rr2$se.standard
+abs(rr$est-rr2$est) < 1e-10
+abs(rr$se-rr2$se) < 1e-10
+abs(rr$se.standard-rr2$se.standard) < 1e-10

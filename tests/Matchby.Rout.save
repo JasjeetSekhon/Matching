@@ -1,7 +1,7 @@
 
-R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
-Copyright (C) 2019 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
+R Under development (unstable) (2020-02-05 r77773) -- "Unsuffered Consequences"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -68,14 +68,14 @@ Matched number of observations  (unweighted).  355
 Number of obs dropped by 'exact' or 'caliper'  66 
 
 > 
-> rr$est-rr2$est
-             [,1]
-[1,] 2.273737e-13
-> rr$se-rr2$se
-[1] 1.136868e-13
-> rr$se.standard-rr2$se.standard
-[1] 0
+> abs(rr$est-rr2$est) < 1e-10
+     [,1]
+[1,] TRUE
+> abs(rr$se-rr2$se) < 1e-10
+[1] TRUE
+> abs(rr$se.standard-rr2$se.standard) < 1e-10
+[1] TRUE
 > 
 > proc.time()
    user  system elapsed 
-  0.199   0.059   0.243 
+  0.260   0.180   0.857 
