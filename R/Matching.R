@@ -286,7 +286,7 @@ Match  <- function(Y=NULL,Tr,X,Z=X,V=rep(1,length(Y)), estimand="ATT", M=1,
     if (!is.null(Weight.matrix))
       {
 
-        if(class(Weight.matrix)=="GenMatch")
+        if(inherits(Weight.matrix, "GenMatch"))
           {
             Weight.matrix = Weight.matrix$Weight.matrix
           }

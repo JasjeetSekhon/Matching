@@ -1,5 +1,6 @@
 suppressMessages(library(Matching))
 suppressWarnings(RNGversion("3.5.3"))
+options(digits = 3)
 
 data(lalonde)
 
@@ -14,6 +15,6 @@ summary(rr2)
 rr  <- Match(Y=Y, Tr=Tr, X=X, M=1, exact=TRUE)
 summary(rr, full=TRUE)
 
-rr$est-rr2$est
-rr$se-rr2$se
-rr$se.standard-rr2$se.standard
+rr$est-rr2$est < 1e-10
+rr$se-rr2$se < 1e-10
+rr$se.standard-rr2$se.standard < 1e-10
