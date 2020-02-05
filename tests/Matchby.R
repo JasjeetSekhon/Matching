@@ -1,6 +1,5 @@
 suppressMessages(library(Matching))
 suppressWarnings(RNGversion("3.5.3"))
-options(digits = 3)
 
 data(lalonde)
 
