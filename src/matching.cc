@@ -218,6 +218,8 @@ extern "C"
     double SumFooWeight, SumIndx3;
     long ic=3;
 
+    SumFoo = 0;//Initialize sumFoo to make sure it is initialized when we branch
+    
     N = asInteger(I_N);
     All = asInteger(I_All);
     length = asInteger(I_length);
