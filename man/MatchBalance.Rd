@@ -58,13 +58,13 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
 \value{
   \item{BeforeMatching}{A list containing the before matching univariate
     balance statistics. That is, a list containing the results of
-    the  \code{\link{balanceUV}} function applied to all of the 
+    the  \code{\link{balanceUV}} function applied to all of the
     covariates described in \code{formul}.  Note that the univariate
     test results for all of the variables in \code{formul} are printed
     if \code{verbose > 0}.}
   \item{AfterMatching}{A list containing the after matching univariate
     balance statistics. That is, a list containing the results of
-    the  \code{\link{balanceUV}} function applied to all of the 
+    the  \code{\link{balanceUV}} function applied to all of the
     covariates described in \code{formul}.  Note that the univariate
     test results for all of the variables in \code{formul} are printed
     if \code{verbose > 0}.  This object is \code{NULL}, if no matched
@@ -81,7 +81,7 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
   \item{AMsmallestVarName}{The name of the variable with the
     \code{AMsmallest.p.value} (a vector in case of ties).}
   \item{AMsmallestVarNumber}{The number of the variable with the
-    \code{AMsmallest.p.value} (a vector in case of ties).}  
+    \code{AMsmallest.p.value} (a vector in case of ties).}
 }
 \details{
   This function can be used to determine if there is balance in the pre-
@@ -120,7 +120,7 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
   Matching Software with Automated Balance Optimization.''
   \emph{Journal of Statistical Software} 42(7): 1-52.
-  \url{http://www.jstatsoft.org/v42/i07/}
+  \url{https://www.jstatsoft.org/v42/i07/}
 
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic
   Matching for Estimating Causal Effects: A General Multivariate
@@ -130,7 +130,7 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
 
   Abadie, Alberto.  2002.  ``Bootstrap Tests for Distributional Treatment
   Effects in Instrumental Variable Models.'' \emph{Journal of the
-  American Statistical Association}, 97:457 (March) 284-292.  
+  American Statistical Association}, 97:457 (March) 284-292.
 
   Hall, Peter. 1992. \emph{The Bootstrap and Edgeworth Expansion}.  New
   York: Springer-Verlag.
@@ -147,11 +147,11 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.  
+  \url{http://sekhon.berkeley.edu/}.
 }
 \seealso{
-  Also see \code{\link{Match}}, \code{\link{GenMatch}}, 
-  \code{\link{balanceUV}}, \code{\link{qqstats}}, \code{\link{ks.boot}}, 
+  Also see \code{\link{Match}}, \code{\link{GenMatch}},
+  \code{\link{balanceUV}}, \code{\link{qqstats}}, \code{\link{ks.boot}},
   \code{\link{GerberGreenImai}}, \code{\link{lalonde}}
 }
 \examples{
@@ -191,7 +191,7 @@ summary(rr)
 
 # Let's check the covariate balance
 # 'nboots' is set to small values in the interest of speed.
-# Please increase to at least 500 each for publication quality p-values.  
+# Please increase to at least 500 each for publication quality p-values.
 mb  <- MatchBalance(treat~age + I(age^2) + educ + I(educ^2) + black +
                     hisp + married + nodegr + re74  + I(re74^2) + re75 + I(re75^2) +
                     u74 + u75, data=lalonde, match.out=rr, nboots=10)

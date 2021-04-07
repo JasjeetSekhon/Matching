@@ -14,7 +14,7 @@ of Statistical Software, 42(7): 1-52. 2011.
 ## How to install
 
 A version is on CRAN. The latest development version can be installed directly from Github
-using [devtools](https://github.com/hadley/devtools). 
+using [devtools](https://github.com/r-lib/devtools). 
 
 ```R
 if (!require("devtools")) install.packages("devtools")
@@ -27,4 +27,4 @@ environment to install the development version. (Use
 environment exists, Windows users download and install
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) and macOS
 users download and install
-[Xcode](https://itunes.apple.com/us/app/xcode/id497799835).
+[Xcode](https://apps.apple.com/us/app/xcode/id497799835).

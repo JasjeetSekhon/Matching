@@ -33,27 +33,27 @@ ks.boot(Tr, Co, nboots=1000, alternative = c("two.sided","less","greater"),
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.  
+  \url{http://sekhon.berkeley.edu/}.
 }
 \references{
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
   Matching Software with Automated Balance Optimization.''
   \emph{Journal of Statistical Software} 42(7): 1-52.
-  \url{http://www.jstatsoft.org/v42/i07/}
+  \url{https://www.jstatsoft.org/v42/i07/}
 
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic Matching for
   Estimating Causal Effects: A General Multivariate Matching Method for
   Achieving Balance in Observational Studies.'' \emph{Review of
   Economics and Statistics}.  95 (3): 932--945.
   \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
-  
+
   Abadie, Alberto.  2002.  ``Bootstrap Tests for Distributional Treatment
   Effects in Instrumental Variable Models.'' \emph{Journal of the
   American Statistical Association}, 97:457 (March) 284-292.
   }
   \seealso{ Also see \code{\link{summary.ks.boot}},
     \code{\link{qqstats}}, \code{\link{balanceUV}}, \code{\link{Match}},
-    \code{\link{GenMatch}}, \code{\link{MatchBalance}}, 
+    \code{\link{GenMatch}}, \code{\link{MatchBalance}},
     \code{\link{GerberGreenImai}}, \code{\link{lalonde}} }
 \examples{
 #

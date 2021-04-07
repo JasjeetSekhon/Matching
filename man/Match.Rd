@@ -132,7 +132,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
     For most uses, this matrix has zeros in the off-diagonal
     cells.  This matrix can be used to weight some variables more than
     others.  For
-    example, if \code{X} contains three variables and we want to 
+    example, if \code{X} contains three variables and we want to
     match as best as we can on the first, the following would work well:
     \cr
     \code{> Weight.matrix <- diag(3)}\cr
@@ -196,7 +196,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
     than either of the other two.}
 }
 \details{
-  
+
   This function is intended to be used in conjunction with the
   \code{MatchBalance} function which checks if the results of this
   function have actually achieved balance.  The results of this function
@@ -217,7 +217,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
   \code{\link{Matchby}} function.  It provides a wrapper for
   \code{Match} which is much faster for large datasets when it can be
   used.\cr
-  
+
   Three demos are included: \code{GerberGreenImai}, \code{DehejiaWahba},
   and \code{AbadieImbens}.  These can be run by calling the
   \code{\link{demo}} function such as by \code{demo(DehejiaWahba)}. \cr
@@ -268,7 +268,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
     \code{rbind(X[index.treated,],X[index.control,])}. The user should
     generally just examine the output of \code{mdata}.}
   \item{index.dropped}{A vector containing the observation numbers from
-    the original data which were dropped (if any) in the matched dataset 
+    the original data which were dropped (if any) in the matched dataset
     because of various options such as \code{caliper} and
     \code{exact}.  If no observations were dropped, this
     index will be \code{NULL}.}
@@ -292,14 +292,14 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
     \code{ndrops.matches}, takes into account observation specific
     weights which the user may have provided via the \code{weights}
     argument.}
-  \item{ndrops.matches}{The number of matches which were dropped either because of 
-    caliper or exact matching.}  
+  \item{ndrops.matches}{The number of matches which were dropped either because of
+    caliper or exact matching.}
 }
 \references{
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
   Matching Software with Automated Balance Optimization.''
   \emph{Journal of Statistical Software} 42(7): 1-52.
-  \url{http://www.jstatsoft.org/v42/i07/}
+  \url{https://www.jstatsoft.org/v42/i07/}
 
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic
   Matching for Estimating Causal Effects: A General Multivariate
@@ -312,7 +312,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
   Treatment Effects.'' \emph{Econometrica} 74(1): 235-267.
 
   Imbens, Guido. 2004. Matching Software for Matlab and
-  Stata. 
+  Stata.
 
 }
 \author{Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
@@ -321,11 +321,11 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
 \seealso{ Also see \code{\link{summary.Match}},
   \code{\link{GenMatch}},
   \code{\link{MatchBalance}},
-  \code{\link{Matchby}},  
+  \code{\link{Matchby}},
   \code{\link{balanceUV}},
   \code{\link{qqstats}}, \code{\link{ks.boot}},
   \code{\link{GerberGreenImai}}, \code{\link{lalonde}}
-} 
+}
 \examples{
 
 # Replication of Dehejia and Wahba psid3 model
@@ -361,7 +361,7 @@ summary(rr)
 
 # Let's check the covariate balance
 # 'nboots' is set to small values in the interest of speed.
-# Please increase to at least 500 each for publication quality p-values.  
+# Please increase to at least 500 each for publication quality p-values.
 mb  <- MatchBalance(treat~age + I(age^2) + educ + I(educ^2) + black +
                     hisp + married + nodegr + re74  + I(re74^2) + re75 + I(re75^2) +
                     u74 + u75, data=lalonde, match.out=rr, nboots=10)

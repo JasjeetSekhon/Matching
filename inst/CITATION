@@ -9,13 +9,13 @@ citEntry(
   volume       = "42",
   number       = "7",
   pages        = "1--52",
-  url          = "http://www.jstatsoft.org/v42/i07/",
+  url          = "https://www.jstatsoft.org/v42/i07/",
 
   textVersion  =
   paste("Jasjeet S. Sekhon (2011).",
         "Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R.",
         "Journal of Statistical Software, 42(7), 1-52.",
-        "URL http://www.jstatsoft.org/v42/i07/.")
+        "URL https://www.jstatsoft.org/v42/i07/.")
 )
 
 citEntry(header="To refer to the theory on which this package is based:",
@@ -27,7 +27,7 @@ citEntry(header="To refer to the theory on which this package is based:",
   number = "3",
   pages = "932--945",
   year = "2013",
-  url  = "http://sekhon.berkeley.edu/papers/GenMatch.pdf", 
+  url  = "http://sekhon.berkeley.edu/papers/GenMatch.pdf",
 
   textVersion  =
   paste("Alexis Diamond and Jasjeet S. Sekhon",
@@ -46,7 +46,7 @@ citEntry(header="Further developing the theory and practice:",
   year = "2012",
 
   textVersion  =
-  paste("Jasjeet Singh Sekhon and Richard D. Grieve (2012).", 
+  paste("Jasjeet Singh Sekhon and Richard D. Grieve (2012).",
     "A Matching Method For Improving Covariate Balance in Cost-Effectiveness Analyses.",
     "Health Economics, 21(6), 695-714."
     )

@@ -11,7 +11,7 @@
   speed, consider doing matching without replacement---see the
   \code{replace} option.  This function is more limited than the
   \code{\link{Match}} function.  For example, \code{Matchby} cannot be
-  used if the user wishes to provide observation specific weights. 
+  used if the user wishes to provide observation specific weights.
 }
 
 \usage{
@@ -59,7 +59,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
       there are many potential matches, setting \code{replace=false} often
       results in a large speedup and negligible or no bias.} Ties are
     randomly broken when \code{replace==FALSE}---see the \code{ties}
-    option for details.}    
+    option for details.}
   \item{exact}{ A logical scalar or vector for whether exact matching
     should be done.  If a logical scalar is provided, that logical value is
     applied to all covariates of
@@ -89,7 +89,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
   \item{Var.calc}{A scalar for the variance estimate
     that should be used.  By default \code{Var.calc=0} which means that
     homoscedasticity is assumed.  For values of  \code{Var.calc > 0},
-    robust variances are calculated using \code{Var.calc} matches.}  
+    robust variances are calculated using \code{Var.calc} matches.}
   \item{Weight}{ A scalar for the type of
     weighting scheme the matching algorithm should use when weighting
     each of the covariates in \code{X}.  The default value of
@@ -109,7 +109,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
     For most uses, this matrix has zeros in the off-diagonal
     cells.  This matrix can be used to weight some variables more than
     others.  For
-    example, if \code{X} contains three variables and we want to 
+    example, if \code{X} contains three variables and we want to
     match as best as we can on the first, the following would work well:
     \cr
     \code{> Weight.matrix <- diag(3)}\cr
@@ -172,7 +172,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
     of the matching
     procedure.  If an estimated propensity score is used, the
     uncertainty involved in its estimation is not accounted for although the
-    uncertainty of the matching procedure itself still is.}  
+    uncertainty of the matching procedure itself still is.}
   \item{index.treated }{A vector containing the observation numbers from
     the original dataset for the treated observations in the
     matched dataset.  This index in conjunction with \code{index.control}
@@ -191,8 +191,8 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
     dataset.}
   \item{orig.nobs }{The original number of observations in the dataset.}
   \item{nobs }{The number of observations in the matched dataset.}
-  \item{wnobs }{The number of weighted observations in the matched dataset.}    
-  \item{orig.treated.nobs}{The original number of treated observations.}    
+  \item{wnobs }{The number of weighted observations in the matched dataset.}
+  \item{orig.treated.nobs}{The original number of treated observations.}
   \item{ndrops}{The number of matches which were dropped because there
     were not enough observations in a given group and because of
     caliper and exact matching.}
@@ -203,7 +203,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
   Matching Software with Automated Balance Optimization.''
   \emph{Journal of Statistical Software} 42(7): 1-52.
-  \url{http://www.jstatsoft.org/v42/i07/}
+  \url{https://www.jstatsoft.org/v42/i07/}
 
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic
   Matching for Estimating Causal Effects: A General Multivariate
@@ -216,7 +216,7 @@ Matchby(Y, Tr, X, by, estimand = "ATT", M = 1, ties=FALSE, replace=TRUE,
   Treatment Effects.'' \emph{Econometrica} 74(1): 235-267.
 
   Imbens, Guido. 2004. Matching Software for Matlab and
-  Stata. 
+  Stata.
 
 }
 \author{Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
@@ -240,7 +240,7 @@ data(lalonde)
 #
 # Estimate the Propensity Score
 #
-glm1  <- glm(treat~age + I(age^2) + educ + I(educ^2) + 
+glm1  <- glm(treat~age + I(age^2) + educ + I(educ^2) +
              hisp + married + nodegr + re74  + I(re74^2) + re75 + I(re75^2) +
              u74 + u75, family=binomial, data=lalonde)
 
@@ -259,7 +259,7 @@ summary(rr)
 
 # Let's check the covariate balance
 # 'nboots' is set to small values in the interest of speed.
-# Please increase to at least 500 each for publication quality p-values.  
+# Please increase to at least 500 each for publication quality p-values.
 mb  <- MatchBalance(treat~age + I(age^2) + educ + I(educ^2) + black +
                     hisp + married + nodegr + re74  + I(re74^2) + re75 + I(re75^2) +
                     u74 + u75, data=lalonde, match.out=rr, nboots=10)
