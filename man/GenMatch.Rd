@@ -363,7 +363,7 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     \code{X}.}  } \references{ Sekhon, Jasjeet S. 2011.  "Multivariate
     and Propensity Score Matching Software with Automated Balance
     Optimization.''  \emph{Journal of Statistical Software} 42(7): 1-52.
-    \url{http://www.jstatsoft.org/v42/i07/}
+    \url{https://www.jstatsoft.org/v42/i07/}
   
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic
   Matching for Estimating Causal Effects: A General Multivariate
