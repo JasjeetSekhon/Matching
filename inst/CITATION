@@ -9,13 +9,13 @@ citEntry(
   volume       = "42",
   number       = "7",
   pages        = "1--52",
-  url          = "https://www.jstatsoft.org/v42/i07/",
+  doi          = "10.18637/jss.v042.i07",
 
   textVersion  =
   paste("Jasjeet S. Sekhon (2011).",
         "Multivariate and Propensity Score Matching Software with Automated Balance Optimization: The Matching Package for R.",
         "Journal of Statistical Software, 42(7), 1-52.",
-        "URL https://www.jstatsoft.org/v42/i07/.")
+        "<doi:10.18637/jss.v042.i07>")
 )
 
 citEntry(header="To refer to the theory on which this package is based:",

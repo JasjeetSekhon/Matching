@@ -299,7 +299,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
   Matching Software with Automated Balance Optimization.''
   \emph{Journal of Statistical Software} 42(7): 1-52.
-  \url{https://www.jstatsoft.org/v42/i07/}
+  \doi{10.18637/jss.v042.i07}
 
   Diamond, Alexis and Jasjeet S. Sekhon. 2013. "Genetic
   Matching for Estimating Causal Effects: A General Multivariate
