@@ -1,7 +1,7 @@
 #define M(ROW,COL,NCOLS) (((ROW)*(NCOLS))+(COL))
 #define TOL 0.0000000001
 
-#define DOUBLE_XMAX_CHECK DOUBLE_XMAX/1000 - 1000
+#define DBL_MAX_CHECK DBL_MAX/1000 - 1000
 
 /* Use CBLAS and Nate Optimizations. Note that uses of BLAS in
    FasterMatchC() and FastMatchC() also requires that

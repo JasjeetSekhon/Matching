@@ -1344,7 +1344,7 @@ extern "C"
 		      {
 			
 			if (restrict[M(j,2,3)] < 0) {
-			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = DOUBLE_XMAX;
+			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = DBL_MAX;
 			}
 			else {
 			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = restrict[M(j,2,3)];
@@ -1354,7 +1354,7 @@ extern "C"
 		      {
 			
 			if (restrict[M(j,2,3)] < 0) {
-			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = DOUBLE_XMAX;
+			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = DBL_MAX;
 			}
 			else {
 			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = restrict[M(j,2,3)];
@@ -1368,7 +1368,7 @@ extern "C"
 	      {
 		for(j=0; j<replace_count; j++)
 		  {
-		    Dist[ ( ReplaceVector[j] - 1) ] = DOUBLE_XMAX;
+		    Dist[ ( ReplaceVector[j] - 1) ] = DBL_MAX;
 		  }
 	      } // end of replace_count
 
@@ -1387,7 +1387,7 @@ extern "C"
 			    diff = abs(Xorig[M(i, k, xvars)] - Xorig[M(j,k,xvars)]); 
 			    if (diff > CaliperVec[k])
 			      {
-				Dist[j] = DOUBLE_XMAX;
+				Dist[j] = DBL_MAX;
 				break;
 			      }
 			  }
@@ -1429,7 +1429,7 @@ extern "C"
 
 	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
-		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
+		if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		  {
 		    sum_caliper_drops++;
 		    continue;
@@ -1955,7 +1955,7 @@ extern "C"
 		      {
 			
 			if (restrict[M(j,2,3)] < 0) {
-			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = DOUBLE_XMAX;
+			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = DBL_MAX;
 			}
 			else {
 			  Dist[ ((long) restrict[M(j,1,3)])-1 ] = restrict[M(j,2,3)];
@@ -1965,7 +1965,7 @@ extern "C"
 		      {
 			
 			if (restrict[M(j,2,3)] < 0) {
-			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = DOUBLE_XMAX;
+			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = DBL_MAX;
 			}
 			else {
 			  Dist[ ((long) restrict[M(j,0,3)])-1 ] = restrict[M(j,2,3)];
@@ -1979,7 +1979,7 @@ extern "C"
 	      {
 		for(j=0; j<replace_count; j++)
 		  {
-		    Dist[ ( ReplaceVector[j] - 1) ] = DOUBLE_XMAX;
+		    Dist[ ( ReplaceVector[j] - 1) ] = DBL_MAX;
 		  }
 	      } // end of replace_count
 
@@ -1998,7 +1998,7 @@ extern "C"
 			    diff = abs(Xorig[M(i, k, xvars)] - Xorig[M(j,k,xvars)]); 
 			    if (diff > CaliperVec[k])
 			      {
-				Dist[j] = DOUBLE_XMAX;
+				Dist[j] = DBL_MAX;
 				break;
 			      }
 			  }
@@ -2019,7 +2019,7 @@ extern "C"
 
 	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
-		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
+		if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		  {
 		    sum_caliper_drops++;
 		    continue;
@@ -2553,7 +2553,7 @@ extern "C"
 #endif /* end __NBLAS__ */
 
 	//Remove self as a potential match
-	Dist[i] = DOUBLE_XMAX;
+	Dist[i] = DBL_MAX;
 	
 	// Dist distance to observation to be matched
 	// is N by 1 vector	    
@@ -2565,7 +2565,7 @@ extern "C"
 		  {
 		    
 		    if (restrict[M(j,2,3)] < 0) {
-		      Dist[ ((long) restrict[M(j,1,3)])-1 ] = DOUBLE_XMAX;
+		      Dist[ ((long) restrict[M(j,1,3)])-1 ] = DBL_MAX;
 		    }
 		    else {
 		      Dist[ ((long) restrict[M(j,1,3)])-1 ] = restrict[M(j,2,3)];
@@ -2575,7 +2575,7 @@ extern "C"
 		  {
 		    
 		    if (restrict[M(j,2,3)] < 0) {
-		      Dist[ ((long) restrict[M(j,0,3)])-1 ] = DOUBLE_XMAX;
+		      Dist[ ((long) restrict[M(j,0,3)])-1 ] = DBL_MAX;
 		    }
 		    else {
 		      Dist[ ((long) restrict[M(j,0,3)])-1 ] = restrict[M(j,2,3)];
@@ -2598,7 +2598,7 @@ extern "C"
 			diff = abs(Xorig[M(i, k, xvars)] - Xorig[M(j,k,xvars)]); 
 			if (diff > CaliperVec[k])
 			  {
-			    Dist[j] = DOUBLE_XMAX;
+			    Dist[j] = DBL_MAX;
 			    break;
 			  }
 		      }
@@ -2616,7 +2616,7 @@ extern "C"
 	    
 	    if ( (restrict_trigger==1) | (caliper==1) )
 	      {
-		if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
+		if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		  {
 		    sum_caliper_drops++;
 		    continue;
@@ -2684,7 +2684,7 @@ extern "C"
 	  
 	  if ( (restrict_trigger==1) | (caliper==1) )
 	    {
-	      if ( (Distmax+cdd) > DOUBLE_XMAX_CHECK)
+	      if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		{
 		  sum_caliper_drops++;
 		  continue;
