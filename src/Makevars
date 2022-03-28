@@ -1,0 +1,3 @@
+## Set package flags rather than creating a file
+PKG_CFLAGS = -DR_BUILD
+PKG_CPPFLAGS = -DR_BUILD
