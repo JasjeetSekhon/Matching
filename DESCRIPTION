@@ -1,6 +1,6 @@
 Package: Matching
 Version: 4.9-12
-Date: 2021-10-18
+Date: 2022-03-29
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Author: Jasjeet Singh Sekhon <jas.sekhon@yale.edu>
@@ -12,7 +12,7 @@ Description: Provides functions for multivariate and propensity score matching
              details, see the paper by Jasjeet Sekhon 
              (2007, <doi:10.18637/jss.v042.i07>).
 Depends: R (>= 2.6.0), MASS (>= 7.2-1), graphics, grDevices, stats
-Suggests: parallel, rgenoud (>= 2.12), rbounds
+Suggests: parallel, rgenoud (>= 2.12)
 License: GPL-3
 URL: http://sekhon.berkeley.edu/matching/
 NeedsCompilation: yes
