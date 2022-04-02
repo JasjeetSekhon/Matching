@@ -2806,7 +2806,7 @@ Matrix EqualityTestMatrix(Matrix a, Matrix s)
 	{
 	  for (long j =0; j< ncols; j++)
 	    {
-	      if( (a[M(i, j, ncols)] < (s[i]+TOL)) &  (a[M(i, j, ncols)] > (s[i]-TOL)) )
+	      if( (a[M(i, j, ncols)] < (s[i]+TOL)) &&  (a[M(i, j, ncols)] > (s[i]-TOL)) )
 		{
 		  ret[M(i, j, ncols)] = 1;
 		}
@@ -2819,7 +2819,7 @@ Matrix EqualityTestMatrix(Matrix a, Matrix s)
 	{
 	  for (long j =0; j< ncols; j++)
 	    {
-	      if( (a[M(i, j, ncols)] < (s[M(i, j, ncols)]+TOL)) &  
+	      if( (a[M(i, j, ncols)] < (s[M(i, j, ncols)]+TOL)) &&  
 		  (a[M(i, j, ncols)] > (s[M(i, j, ncols)]-TOL)) )
 		{
 		  ret[M(i, j, ncols)] = 1;
