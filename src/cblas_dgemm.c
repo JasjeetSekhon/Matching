@@ -97,8 +97,7 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
          F77_TB = C2F_CHAR(&TB);
       #endif
 
-	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_M, &F77_N, &F77_K, &alpha, A,
-       &F77_lda, B, &F77_ldb, &beta, C, &F77_ldc);
+	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_M, &F77_N, &F77_K, &alpha, A, &F77_lda, B, &F77_ldb, &beta, C, &F77_ldc);
    } else if (Order == CblasRowMajor)
    {
       RowMajorStrg = 1;
@@ -129,8 +128,7 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
          F77_TB = C2F_CHAR(&TB);
       #endif
 
-	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_N, &F77_M, &F77_K, &alpha, B,
-			 &F77_ldb, A, &F77_lda, &beta, C, &F77_ldc);
+	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_N, &F77_M, &F77_K, &alpha, B, &F77_ldb, A, &F77_lda, &beta, C, &F77_ldc);
    } 
    else  {
      error("cblas_dgemm", "Illegal Order setting, %d\n", Order);
