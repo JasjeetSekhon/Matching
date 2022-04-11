@@ -27,11 +27,15 @@
    August 1, 2007
 */
 
-
+#define USE_FC_LEN_T
 #include <R.h>
 #include <R_ext/Applic.h> /* R blas declarations */
 
 #include "cblas.h"
+#ifndef FCONE
+# define FCONE
+#endif
+
 void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA,
                  const enum CBLAS_TRANSPOSE TransB, const int M, const int N,
                  const int K, const double alpha, const double  *A,
@@ -85,7 +89,7 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
          F77_TB = C2F_CHAR(&TB);
       #endif
 
-	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_M, &F77_N, &F77_K, &alpha, A, &F77_lda, B, &F77_ldb, &beta, C, &F77_ldc);
+	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_M, &F77_N, &F77_K, &alpha, A, &F77_lda, B, &F77_ldb, &beta, C, &F77_M FCONE FCONE);
    } else if (Order == CblasRowMajor)
    {
       if(TransA == CblasTrans) TB='T';
@@ -111,7 +115,7 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
          F77_TB = C2F_CHAR(&TB);
       #endif
 
-	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_N, &F77_M, &F77_K, &alpha, B, &F77_ldb, A, &F77_lda, &beta, C, &F77_ldc);
+	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_N, &F77_M, &F77_K, &alpha, B, &F77_ldb, A, &F77_lda, &beta, C, &F77_N FCONE FCONE);
    } 
    else  {
      error("cblas_dgemm", "Illegal Order setting, %d\n", Order);
