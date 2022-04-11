@@ -58,14 +58,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
    #define F77_ldc ldc
 #endif
 
-   /* the follow two vars were originally in Carla's.h as ex-terns, but that runs into conflicts on system with a
-      preexisting cblas */
-   int CBLAS_CallFromC;
-   int RowMajorStrg;
-
-   RowMajorStrg = 0;
-   CBLAS_CallFromC = 1;
-
    if( Order == CblasColMajor )
    {
       if(TransA == CblasTrans) TA='T';
@@ -75,8 +67,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
       {
 	error("cblas_dgemm","Illegal TransA setting, %d\n", TransA);
 	/* cblas_xerbla(2, "cblas_dgemm","Illegal TransA setting, %d\n", TransA); */
-         CBLAS_CallFromC = 0;
-         RowMajorStrg = 0;
          return;
       }
 
@@ -87,8 +77,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
       {
 	error("cblas_dgemm","Illegal TransB setting, %d\n", TransB);
 	/* cblas_xerbla(3, "cblas_dgemm","Illegal TransB setting, %d\n", TransB); */
-         CBLAS_CallFromC = 0;
-         RowMajorStrg = 0;
          return;
       }
 
@@ -100,7 +88,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
 	 F77_CALL(dgemm)(F77_TA, F77_TB, &F77_M, &F77_N, &F77_K, &alpha, A, &F77_lda, B, &F77_ldb, &beta, C, &F77_ldc);
    } else if (Order == CblasRowMajor)
    {
-      RowMajorStrg = 1;
       if(TransA == CblasTrans) TB='T';
       else if ( TransA == CblasConjTrans ) TB='C';
       else if ( TransA == CblasNoTrans )   TB='N';
@@ -108,8 +95,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
       {
 	error("cblas_dgemm","Illegal TransA setting, %d\n", TransA);
 	/* cblas_xerbla(2, "cblas_dgemm","Illegal TransA setting, %d\n", TransA); */
-         CBLAS_CallFromC = 0;
-         RowMajorStrg = 0;
          return;
       }
       if(TransB == CblasTrans) TA='T';
@@ -119,8 +104,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
       {
 	error("cblas_dgemm","Illegal TransB setting, %d\n", TransB);
 	/* cblas_xerbla(2, "cblas_dgemm","Illegal TransB setting, %d\n", TransB); */
-         CBLAS_CallFromC = 0;
-         RowMajorStrg = 0;
          return;
       }
       #ifdef F77_CHAR
@@ -134,8 +117,6 @@ void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA
      error("cblas_dgemm", "Illegal Order setting, %d\n", Order);
      /* cblas_xerbla(1, "cblas_dgemm", "Illegal Order setting, %d\n", Order); */
    }
-   CBLAS_CallFromC = 0;
-   RowMajorStrg = 0;
    return;
 }
 
