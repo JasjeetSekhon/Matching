@@ -1,9 +1,13 @@
 Package: Matching
-Version: 4.9-17
-Date: 2022-04-11
+Version: 4.9-18
+Date: 2022-04-12
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
-Author: Jasjeet Singh Sekhon <jas.sekhon@yale.edu>
+Authors@R: c(
+    person("Jasjeet", "Sekhon", role = c("aut","cre"), email = "jas.sekhon@yale.edu"),
+    person("Theo", "Saarinen", role = c("ctb","cre"), email = "theo_s@berkeley.edu"),
+    person("Keita", "Teranishi", role = "ctb")
+    )        
 Maintainer: Jasjeet Singh Sekhon <jas.sekhon@yale.edu>
 Description: Provides functions for multivariate and propensity score matching 
              and for finding optimal balance based on a genetic search algorithm. 
@@ -14,6 +18,6 @@ Description: Provides functions for multivariate and propensity score matching
 Depends: R (>= 2.6.0), MASS (>= 7.2-1), graphics, grDevices, stats
 Suggests: parallel, rgenoud (>= 2.12)
 License: GPL-3
-URL: http://sekhon.berkeley.edu/matching/
+URL: https://github.com/JasjeetSekhon/Matching
 NeedsCompilation: yes
 RoxygenNote: 7.1.1
