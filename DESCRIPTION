@@ -4,7 +4,7 @@ Date: 2022-04-12
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Authors@R: c(
-    person("Jasjeet", "Sekhon", role = c("aut","cre"), email = "jas.sekhon@yale.edu"),
+    person("Jasjeet", "Singh Sekhon", role = c("aut","cre"), email = "jas.sekhon@yale.edu"),
     person("Theo", "Saarinen", role = c("aut"), email = "theo_s@berkeley.edu"),
     person("Keita", "Teranishi", role = "ctb")
     )        
