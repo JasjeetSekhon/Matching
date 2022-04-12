@@ -5,7 +5,7 @@ Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Authors@R: c(
     person("Jasjeet", "Sekhon", role = c("aut","cre"), email = "jas.sekhon@yale.edu"),
-    person("Theo", "Saarinen", role = c("ctb","cre"), email = "theo_s@berkeley.edu"),
+    person("Theo", "Saarinen", role = c("aut"), email = "theo_s@berkeley.edu"),
     person("Keita", "Teranishi", role = "ctb")
     )        
 Maintainer: Jasjeet Singh Sekhon <jas.sekhon@yale.edu>
