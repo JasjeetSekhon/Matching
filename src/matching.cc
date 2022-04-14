@@ -1,7 +1,5 @@
 /*  
-    Jasjeet S. Sekhon <sekhon@berkeley.edu>
-    HTTP://sekhon.berkeley.edu/
-    UC Berkeley
+    Jasjeet S. Sekhon <jasjeet.sekhon@gmail.com>
     
     2013/10/28
     Under the GNU Public License Version 3
@@ -78,6 +76,13 @@
 /* Note: We are using the include cblas header which will direct to the
    central R BLAS */
 
+#define USE_FC_LEN_T
+#include <Rconfig.h>
+#include <R_ext/BLAS.h>
+#ifndef FCONE
+# define FCONE
+#endif
+
 #include "scythematrix.h"
 
 using namespace SCYTHE;
@@ -114,38 +119,12 @@ using namespace std;
 
 extern "C"
 {
-#ifdef INTERNAL_CBLAS
-#include "cblas.h"
-
-  void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA,
-		   const enum CBLAS_TRANSPOSE TransB, const int M, const int N,
-		   const int K, const double alpha, const double  *A,
-		   const int lda, const double  *B, const int ldb,
-		   const double beta, double  *C, const int ldc);
-
-  void cblas_dscal( const int N, const double alpha, double *X, 
-		    const int incX);
-
-  double cblas_dasum( const int N, const double *X, const int incX);
-#endif
-
 /*---------------------------------------------------------------------------
    Function :   kth_smallest()
    In       :   array of elements, # of elements in the array, rank k
    Out      :   one element
    Job      :   find the kth smallest element in the array
    Notice   :   use the median() macro defined below to get the median. 
-
-                Reference:
-
-                http://www.eso.org/~ndevilla/median/
-
-                  Author: Wirth, Niklaus 
-                   Title: Algorithms + data structures = programs 
-               Publisher: Englewood Cliffs: Prentice-Hall, 1976 
-    Physical description: 366 p. 
-                  Series: Prentice-Hall Series in Automatic Computation 
-
  ---------------------------------------------------------------------------*/
 
 
@@ -485,7 +464,7 @@ extern "C"
 	//http://docs.sun.com/source/819-3691/dscal.html
 	for (int kk=0; kk < xvars; kk++)
 	  {
-	    cblas_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
+	    F77_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
 	  }
 
 	ZX.multi_scalar(ZX);
@@ -839,7 +818,7 @@ extern "C"
 	//http://docs.sun.com/source/819-3691/dscal.html
 	for (int kk=0; kk < xvars; kk++)
 	  {
-	    cblas_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
+	    F77_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
 	  }
 
 	ZX.multi_scalar(ZX);
@@ -1246,21 +1225,25 @@ extern "C"
 		//JSS
 		// do the second multiplication with dgemm, multiplying the matrix
 		// above, D, by the transpose of matrix W.
-		cblas_dgemm(CblasRowMajor,// column major
-			    CblasNoTrans, // A not transposed
-			    CblasTrans,   // B transposed
-			    xvars,        // M
-			    N,            // N
-			    xvars,        // K
-			    1.0,          // alpha, (alpha * A * B)
-			    ww.data,      // A
-			    xvars,        // leading dimension for A
-			    ZX.data,      // B
-			    xvars,        // leading dimension for B
-			    0.0,          // beta, (beta * C)
-			    DX.data,      // C
-			    N);           // leading dimension for C
-		
+		const double one=1.0;
+		const double zero=0.0;
+		const int fxvars= (int) xvars;
+		const int fN= (int) N;
+		F77_CALL(dgemm)(
+				"T",   // A not transposed (do the opposite because of RowMajor)
+				"N",   // B transposed (do the opposite because of RowMajor)
+				&fN,            // N
+				&fxvars,        // M
+				&fxvars,        // K
+				&one,           // alpha, (alpha * A * B)
+				ZX.data,        // B
+				&fxvars,        // leading dimension for B, ldb				
+				ww.data,        // A
+				&fxvars,        // leading dimension for A, lda				
+				&zero,          // beta, (beta * C)
+				DX.data,        // C				
+				&fN FCONE FCONE);  // leading dimension for C
+
 		DX.multi_scalar(DX);
 		
 		std::swap(DX.colsize, DX.rowsize);
@@ -1286,7 +1269,7 @@ extern "C"
 		//http://docs.sun.com/source/819-3691/dscal.html
 		for (int kk=0; kk < xvars; kk++)
 		  {
-		    cblas_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
+		    F77_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
 		  }
 		
 		ZX.multi_scalar(ZX);
@@ -1857,20 +1840,24 @@ extern "C"
 		//JSS
 		// do the second multiplication with dgemm, multiplying the matrix
 		// above, D, by the transpose of matrix W.
-		cblas_dgemm(CblasRowMajor,// column major
-			    CblasNoTrans, // A not transposed
-			    CblasTrans,   // B transposed
-			    xvars,        // M
-			    N,            // N
-			    xvars,        // K
-			    1.0,          // alpha, (alpha * A * B)
-			    ww.data,      // A
-			    xvars,        // leading dimension for A
-			    ZX.data,      // B
-			    xvars,        // leading dimension for B
-			    0.0,          // beta, (beta * C)
-			    DX.data,      // C
-			    N);           // leading dimension for C
+		const double one=1.0;
+		const double zero=0.0;
+		const int fxvars= (int) xvars;
+		const int fN= (int) N;
+		F77_CALL(dgemm)(
+				"T",   // A not transposed (do the opposite because of RowMajor)
+				"N",   // B transposed (do the opposite because of RowMajor)
+				&fN,            // N
+				&fxvars,        // M
+				&fxvars,        // K
+				&one,           // alpha, (alpha * A * B)
+				ZX.data,        // B
+				&fxvars,        // leading dimension for B, ldb				
+				ww.data,        // A
+				&fxvars,        // leading dimension for A, lda				
+				&zero,          // beta, (beta * C)
+				DX.data,        // C				
+				&fN FCONE FCONE);  // leading dimension for C
 		
 		DX.multi_scalar(DX);
 		
@@ -1897,7 +1884,7 @@ extern "C"
 		//http://docs.sun.com/source/819-3691/dscal.html
 		for (int kk=0; kk < xvars; kk++)
 		  {
-		    cblas_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
+		    F77_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
 		  }
 		
 		ZX.multi_scalar(ZX);
@@ -2465,20 +2452,24 @@ extern "C"
 	    //JSS
 	    // do the second multiplication with dgemm, multiplying the matrix
 	    // above, D, by the transpose of matrix W.
-	    cblas_dgemm(CblasRowMajor,// column major
-			CblasNoTrans, // A not transposed
-			CblasTrans,   // B transposed
-			xvars,        // M
-			N,            // N
-			xvars,        // K
-			1.0,          // alpha, (alpha * A * B)
-			ww.data,      // A
-			xvars,        // leading dimension for A
-			ZX.data,      // B
-			xvars,        // leading dimension for B
-			0.0,          // beta, (beta * C)
-			DX.data,      // C
-			N);           // leading dimension for C
+	    const double one=1.0;
+	    const double zero=0.0;
+	    const int fxvars= (int) xvars;
+	    const int fN= (int) N;
+	    F77_CALL(dgemm)(
+			    "T",   // A not transposed (do the opposite because of RowMajor)
+			    "N",   // B transposed (do the opposite because of RowMajor)
+			    &fN,            // N
+			    &fxvars,        // M
+			    &fxvars,        // K
+			    &one,           // alpha, (alpha * A * B)
+			    ZX.data,        // B
+			    &fxvars,        // leading dimension for B, ldb				
+			    ww.data,        // A
+			    &fxvars,        // leading dimension for A, lda				
+			    &zero,          // beta, (beta * C)
+			    DX.data,        // C				
+			    &fN FCONE FCONE);  // leading dimension for C
 	    
 	    DX.multi_scalar(DX);
 	    
@@ -2505,7 +2496,7 @@ extern "C"
 	    //http://docs.sun.com/source/819-3691/dscal.html
 	    for (int kk=0; kk < xvars; kk++)
 	      {
-		cblas_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
+		F77_dscal(N, ww.data[M(kk,kk,xvars)], ZX.data+kk, xvars);
 	      }
 	    
 	    ZX.multi_scalar(ZX);
@@ -2898,3 +2889,17 @@ Matrix multi_scalar (Matrix a, Matrix b)
   a.multi_scalar(b);
   return a;
 } 
+
+
+void F77_dscal( const int N, const double DA, double *DX, 
+                       const int INCX)
+{
+  F77_CALL(dscal)( &N, &DA, DX, &INCX);
+}
+
+void F77_dasum( const int N, const double *DX, const int INCX)
+{
+  F77_CALL(dasum)( &N, DX, &INCX);
+}
+
+

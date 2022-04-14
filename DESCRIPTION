@@ -1,12 +1,11 @@
 Package: Matching
-Version: 4.9-19
+Version: 4.10-2
 Date: 2022-04-13
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Authors@R: c(
     person("Jasjeet", "Singh Sekhon", role = c("aut","cre"), email = "jas.sekhon@yale.edu"),
-    person("Theo", "Saarinen", role = c("aut"), email = "theo_s@berkeley.edu"),
-    person("Keita", "Teranishi", role = "aut")
+    person("Theo", "Saarinen", role = c("aut"), email = "theo_s@berkeley.edu")
     )        
 Maintainer: Jasjeet Singh Sekhon <jas.sekhon@yale.edu>
 Description: Provides functions for multivariate and propensity score matching 

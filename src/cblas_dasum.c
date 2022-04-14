@@ -33,7 +33,7 @@
 #include <R.h>
 #include <R_ext/Applic.h> /* R blas declarations */
 
-#include "cblas.h"
+//#include "cblas.h"
 double cblas_dasum( const int N, const double *X, const int incX) 
 {
    double asum;
