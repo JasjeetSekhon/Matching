@@ -27,4 +27,4 @@ environment to install the development version. (Use
 environment exists, Windows users download and install
 [Rtools](https://cran.r-project.org/bin/windows/Rtools/) and macOS
 users download and install
-[Xcode](https://apps.apple.com/us/app/xcode/id497799835).
+[Xcode].
