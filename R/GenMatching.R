@@ -394,7 +394,7 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
       {
         lexical = 1
       } else if (fit.func=="stddiff" ) {
-        lexical = 1
+        lexical = ncol(BalanceMatrix)
       } else if (fit.func=="qqmean.max" | fit.func=="qqmedian.max" | fit.func=="qqmax.max" )   {
         lexical=ncol(BalanceMatrix)
       } else if (fit.func!="qqmean.mean" & fit.func!="qqmean.max" &
