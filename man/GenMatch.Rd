@@ -25,6 +25,7 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
          wait.generations=4, hard.generation.limit=FALSE,
          starting.values=rep(1,ncol(X)),
          fit.func="pvals",
+         vartype=rep(0,ncol(X)),
          MemoryMatrix=TRUE,
          exact=NULL, caliper=NULL, replace=TRUE, ties=TRUE,
          CommonSupport=FALSE, nboots=0, ks=TRUE, verbose=FALSE,
@@ -96,6 +97,9 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     Kolmogorov-Smirnov tests conducted for each column in
     \code{BalanceMatrix}.  Lexical optimization is conducted---see the
     \code{loss} option for details.\cr
+    \code{stddiff}: Use the standardize difference in covariates to assess the 
+    balance of the matchings. Minimize the mean of these differences across
+    variables.
     \code{qqmean.mean}: calculate the mean standardized difference in the eQQ
     plot for each variable.  Minimize the mean of these differences across
     variables.\cr
@@ -124,6 +128,16 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     be balanced---i.e., the \code{BalanceMatrix} the user provided to
     \code{GenMatch}. For an example see
     \url{http://sekhon.berkeley.edu/matching/R/my_fitfunc.R}.}
+  \item{vartype}{
+    This parameter is an optional parameter specifying the variable types 
+    (continuous, binary, and multinomial) for the columns of the BalanceMatrix. 
+    This is only required when \code{fit.func} is set to \code{stddiff}, as the 
+    distinction matters when calculating the standardized differences. Entries
+    should be 0 to denote a continous feature, 1 to indicate a binary feature,
+    and 2 to indicate a multinomial feature and the vector must be equal in length
+    to the number of columns in the BalanceMatrix. If this parameter is not set,
+    it will default to all 0's, indicating all features are continuous.
+  }
   \item{MemoryMatrix}{
     This variable controls if \code{\link[rgenoud]{genoud}} sets up a memory matrix.  Such a
     matrix ensures that \code{\link[rgenoud]{genoud}} will request the fitness evaluation

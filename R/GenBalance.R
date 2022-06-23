@@ -137,6 +137,44 @@ GenBalanceQQ <- function(rr, X, summarystat="mean", summaryfunc="mean")
       }    
   } #end of GenBalanceQQ
 
+
+StdDiff <- function( matches, BM, vartype )
+{
+  # note: "matches" has three columns:
+  # column 1: index of treated obs
+  # column 2: index of control obs
+  # column 3: weights for matched-pairs
+  
+  # note: BM is the BalanceMatrix the user passed into GenMatch
+  
+  index.treated <- matches[,1]
+  index.control <- matches[,2]
+  
+  # Create a Data Frame with a Column 'match'
+  
+  nvars <- ncol( BM )
+  
+  gcol <- rep( as.numeric( NA ), nrow( BM ) )             # "group variable." Binary indicator. NA=non-matched, 0=matched control, 1=matched treatment
+  df.BM <- cbind( data.frame( BM ), gcol )                # All the columns in df.BM are numeric, including "gcol".
+  
+  for( i in 1:nrow( matches ) ){
+    df.BM$gcol[ index.treated[ i ] ] <- 1
+    df.BM$gcol[ index.control[ i ] ] <- 0
+  }
+  
+  stddiff.value <- as.numeric( rep( NA, nvars ) )
+  
+  for( i in 1:nvars ){
+    if( vartype[ i ] == 0 ) stddiff.value[ i ] <- stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff" ]      # continuous
+    else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff" ]      # binary
+    else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ] # multinomial (with 3+ levels)
+    
+  }
+  stddiff.value.sorted <- sort( stddiff.value, decreasing=TRUE )
+  
+  return( stddiff.value.sorted )
+} # end of StdDiff
+
 GenBalance <-
   function(rr, X, nvars=ncol(X), nboots = 0, ks=TRUE, verbose = FALSE, paired=TRUE)
   {

@@ -166,6 +166,7 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
                      wait.generations=4, hard.generation.limit=FALSE,
                      starting.values=rep(1,ncol(X)),
                      fit.func="pvals",
+                     vartype=rep(0,ncol(BalanceMatrix)),
                      MemoryMatrix=TRUE,
                      exact=NULL, caliper=NULL, replace=TRUE, ties=TRUE,
                      CommonSupport=FALSE,nboots=0, ks=TRUE, verbose=FALSE,
@@ -392,15 +393,27 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
     if (is.function(fit.func))
       {
         lexical = 1
-      } else if (fit.func=="qqmean.max" | fit.func=="qqmedian.max" | fit.func=="qqmax.max")   {
+      } else if (fit.func=="stddiff" ) {
+        lexical = 1
+      } else if (fit.func=="qqmean.max" | fit.func=="qqmedian.max" | fit.func=="qqmax.max" )   {
         lexical=ncol(BalanceMatrix)
       } else if (fit.func!="qqmean.mean" & fit.func!="qqmean.max" &
                  fit.func!="qqmedian.median" & fit.func!="qqmedian.max"
-                 & fit.func!="pvals") {
+                 & fit.func!="pvals" & fit.func!="stddiff") {
         stop("invalid 'fit.func' argument")
       } else  if (!fit.func=="pvals") {
         lexical = 0
       }
+    
+    # check vartypes if using stddiff for balance matric
+    if (!is.function(fit.func) && fit.func=="stddiff") {
+      if (length(vartype) != ncol(BalanceMatrix)) {
+        stop("vartype must be of the same length as the number of columns in BalanceMatrix")
+      } 
+      if (any(!(vartype %in% c(0:2)))) {
+        stop("vartype must be one of 0,1,2 (continuous, binary, multinomial)")
+      }
+    }
 
     if(replace==FALSE)
       {
@@ -875,13 +888,53 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
                 return(mean(qqsummary))
               }    
           } #end of GenBalanceQQ.internal
+        
+        # Same as StdDiff in GenBalance.R but internal 
+        StdDiff.internal <- function( matches, BM, vartype )
+        {
+          # note: "matches" has three columns:
+          # column 1: index of treated obs
+          # column 2: index of control obs
+          # column 3: weights for matched-pairs
+          
+          # note: BM is the BalanceMatrix the user passed into GenMatch
+          
+          index.treated <- matches[,1]
+          index.control <- matches[,2]
+          
+          # Create a Data Frame with a Column 'match'
+          
+          nvars <- ncol( BM )
+          
+          gcol <- rep( as.numeric( NA ), nrow( BM ) )             # "group variable." Binary indicator. NA=non-matched, 0=matched control, 1=matched treatment
+          df.BM <- cbind( data.frame( BM ), gcol )                # All the columns in df.BM are numeric, including "gcol".
+          
+          for( i in 1:nrow( matches ) ){
+            df.BM$gcol[ index.treated[ i ] ] <- 1
+            df.BM$gcol[ index.control[ i ] ] <- 0
+          }
+          
+          stddiff.value <- as.numeric( rep( NA, nvars ) )
+          
+          for( i in 1:nvars ){
+            if( vartype[ i ] == 0 ) stddiff.value[ i ] <- stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff" ]      # continuous
+            else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff" ]      # binary
+            else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ] # multinomial (with 3+ levels)
+            
+          }
+          stddiff.value.sorted <- sort( stddiff.value, decreasing=TRUE )
+          
+          return( stddiff.value.sorted )
+        } # end of StdDiff.internal
 
 
         if (is.function(fit.func)) {
           a <- fit.func(rr, BalanceMatrix)
           return(a)
-        } else if (fit.func=="pvals")
-          {
+        } else if (fit.func=="stddiff")  {
+          a <- StdDiff.internal(rr, BalanceMatrix, vartype)
+          return(a)
+        } else if (fit.func=="pvals") {
             a <- GenBalance.internal(rr=rr, X=BalanceMatrix, nvars=balancevars, nboots=nboots,
                                      ks=ks, verbose=verbose, paired=paired)
             a <- loss.func(a)
