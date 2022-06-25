@@ -166,7 +166,7 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
                      wait.generations=4, hard.generation.limit=FALSE,
                      starting.values=rep(1,ncol(X)),
                      fit.func="pvals",
-                     vartype=rep(0,ncol(BalanceMatrix)),
+                     vartype=NULL,
                      MemoryMatrix=TRUE,
                      exact=NULL, caliper=NULL, replace=TRUE, ties=TRUE,
                      CommonSupport=FALSE,nboots=0, ks=TRUE, verbose=FALSE,
@@ -404,6 +404,13 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
       } else  if (!fit.func=="pvals") {
         lexical = 0
       }
+    
+    # Throw an error if we try to use fit.func = "stddiff" without specifying the
+    # types of features in BalanceMatrix
+    if (!is.function(fit.func) && fit.func=="stddiff" && is.null(vartype)) {
+      stop(paste0("vartype must be set to give the types of features in ",
+                  "the BalanceMatrix when fit.func = \"stddiff\""))
+    }
     
     # check vartypes if using stddiff for balance matric
     if (!is.function(fit.func) && fit.func=="stddiff") {
