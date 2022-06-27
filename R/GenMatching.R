@@ -924,9 +924,9 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
           stddiff.value <- as.numeric( rep( NA, nvars ) )
           
           for( i in 1:nvars ){
-            if( vartype[ i ] == 0 ) stddiff.value[ i ] <- stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff" ]      # continuous
-            else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff" ]      # binary
-            else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ] # multinomial (with 3+ levels)
+            if( vartype[ i ] == 0 ) stddiff.value[ i ] <- abs(stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff" ])      # continuous
+            else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- abs(stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff" ])      # binary
+            else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- abs(stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ]) # multinomial (with 3+ levels)
             
           }
           stddiff.value.sorted <- sort( stddiff.value, decreasing=TRUE )
