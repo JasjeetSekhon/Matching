@@ -25,7 +25,7 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
          wait.generations=4, hard.generation.limit=FALSE,
          starting.values=rep(1,ncol(X)),
          fit.func="pvals",
-         vartype=rep(0,ncol(X)),
+         vartype=NULL,
          MemoryMatrix=TRUE,
          exact=NULL, caliper=NULL, replace=TRUE, ties=TRUE,
          CommonSupport=FALSE, nboots=0, ks=TRUE, verbose=FALSE,
@@ -97,9 +97,9 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     Kolmogorov-Smirnov tests conducted for each column in
     \code{BalanceMatrix}.  Lexical optimization is conducted---see the
     \code{loss} option for details.\cr
-    \code{stddiff}: Use the standardize difference in covariates to assess the 
-    balance of the matchings. Minimize the mean of these differences across
-    variables.
+    \code{stddiff.max}: Calculate the absolute value of the standardized differences
+    in the covariates to assess the balance of the matchings. Minimize the max of 
+    these differences across all variables in the BalanceMatrix.
     \code{qqmean.mean}: calculate the mean standardized difference in the eQQ
     plot for each variable.  Minimize the mean of these differences across
     variables.\cr

@@ -393,27 +393,27 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
     if (is.function(fit.func))
       {
         lexical = 1
-      } else if (fit.func=="stddiff" ) {
+      } else if (fit.func=="stddiff.max" ) {
         lexical = ncol(BalanceMatrix)
       } else if (fit.func=="qqmean.max" | fit.func=="qqmedian.max" | fit.func=="qqmax.max" )   {
         lexical=ncol(BalanceMatrix)
       } else if (fit.func!="qqmean.mean" & fit.func!="qqmean.max" &
                  fit.func!="qqmedian.median" & fit.func!="qqmedian.max"
-                 & fit.func!="pvals" & fit.func!="stddiff") {
+                 & fit.func!="pvals" & fit.func!="stddiff.max") {
         stop("invalid 'fit.func' argument")
       } else  if (!fit.func=="pvals") {
         lexical = 0
       }
     
-    # Throw an error if we try to use fit.func = "stddiff" without specifying the
+    # Throw an error if we try to use fit.func = "stddiff.max" without specifying the
     # types of features in BalanceMatrix
-    if (!is.function(fit.func) && fit.func=="stddiff" && is.null(vartype)) {
+    if (!is.function(fit.func) && fit.func=="stddiff.max" && is.null(vartype)) {
       stop(paste0("vartype must be set to give the types of features in ",
                   "the BalanceMatrix when fit.func = \"stddiff\""))
     }
     
     # check vartypes if using stddiff for balance matric
-    if (!is.function(fit.func) && fit.func=="stddiff") {
+    if (!is.function(fit.func) && fit.func=="stddiff.max") {
       if (length(vartype) != ncol(BalanceMatrix)) {
         stop("vartype must be of the same length as the number of columns in BalanceMatrix")
       } 
@@ -924,9 +924,9 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
           stddiff.value <- as.numeric( rep( NA, nvars ) )
           
           for( i in 1:nvars ){
-            if( vartype[ i ] == 0 ) stddiff.value[ i ] <- abs(stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff" ])      # continuous
-            else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- abs(stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff" ])      # binary
-            else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- abs(stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ]) # multinomial (with 3+ levels)
+            if( vartype[ i ] == 0 ) stddiff.value[ i ] <- abs(stddiff::stddiff.numeric ( df.BM, nvars+1, i )[ ,"stddiff.max" ])      # continuous
+            else if( vartype[ i ] == 1 ) stddiff.value[ i ] <- abs(stddiff::stddiff.binary  ( df.BM, nvars+1, i )[ ,"stddiff.max" ])      # binary
+            else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- abs(stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff.max" ][ 1 ]) # multinomial (with 3+ levels)
             
           }
           stddiff.value.sorted <- sort( stddiff.value, decreasing=TRUE )
@@ -938,7 +938,7 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
         if (is.function(fit.func)) {
           a <- fit.func(rr, BalanceMatrix)
           return(a)
-        } else if (fit.func=="stddiff")  {
+        } else if (fit.func=="stddiff.max")  {
           a <- StdDiff.internal(rr, BalanceMatrix, vartype)
           return(a)
         } else if (fit.func=="pvals") {
