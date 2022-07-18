@@ -99,7 +99,8 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     \code{loss} option for details.\cr
     \code{stddiff.max}: Calculate the absolute value of the standardized differences
     in the covariates to assess the balance of the matchings. Minimize the max of 
-    these differences across all variables in the BalanceMatrix.\cr
+    these differences across all variables in the BalanceMatrix. Note that non finite
+    values of stddiff are handled internally by \code{\link[rgenoud]{genoud}}.\cr
     \code{qqmean.mean}: calculate the mean standardized difference in the eQQ
     plot for each variable.  Minimize the mean of these differences across
     variables.\cr
