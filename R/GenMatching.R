@@ -928,6 +928,18 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
             else if( vartype[ i ] == 2 ) stddiff.value[ i ] <- abs(stddiff::stddiff.category( df.BM, nvars+1, i )[ ,"stddiff" ][ 1 ]) # multinomial (with 3+ levels)
             
           }
+          
+          # stddiff returns Inf when the numerator is not zero (a difference in the means of the groups) 
+          # and the denominator (homogeneity in the values of both groups)
+          
+          # It returns NaN when the numerator and denominator are both zero: both groups share all of the same
+          # values. 
+          
+          # Given this behavior, we set NaN entries of the stddiff.values vector to be zero
+          if (any(is.nan(stddiff.value))) {
+            stddiff.value[which(is.nan(stddiff.value))] <- 0.0
+          }
+          
           stddiff.value.sorted <- sort( stddiff.value, decreasing=TRUE )
           
           return( stddiff.value.sorted )
