@@ -19,7 +19,7 @@
     \item{WARD    }{Ward of residence}
     \item{QUESTION}{Asked to commit to voting}
     \item{MAILGRP }{Sent mail}
-    \item{PHONEGRP}{Phone batch \#1}
+    \item{PHONEGRP}{Phone batch #1}
     \item{PERSNGRP}{Personal contact attempted}
     \item{APPEAL  }{Content of message}
     \item{CONTACT }{Personal contact occurred}
@@ -28,11 +28,11 @@
     \item{MAJORPTY}{Democratic or Republican}
     \item{VOTE96.0}{Abstained in 1996}
     \item{VOTE96.1}{Voted in 1996}
-    \item{MAILCALL}{Phone batch \#2}
+    \item{MAILCALL}{Phone batch #2}
     \item{VOTED98 }{Voted in 1998}
     \item{PHNSCRPT}{Script read to phone respondents}
-    \item{DIS.MC  }{Contacted by phone in batch \#2}
-    \item{DIS.PHN }{Contacted by phone in batch \#1}
+    \item{DIS.MC  }{Contacted by phone in batch #2}
+    \item{DIS.PHN }{Contacted by phone in batch #1}
     \item{PHN.C   }{Contacted by phone}
     \item{PHNTRT1 }{Phone contact attempted (no blood or blood/civic)}
     \item{PHNTRT2 }{Phone contact attempted (no blood)}
