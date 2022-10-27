@@ -234,7 +234,7 @@ Match  <- function(Y=NULL,Tr,X,Z=X,V=rep(1,length(Y)), estimand="ATT", M=1,
         }
       }
 
-    if (!is.null(match.out) & class(match.out) != "Match") {
+    if (!is.null(match.out) & !inherits(match.out, "Match")) {
       warning("match.out object not of class 'Match'")
       return(invisible(NULL))
     }
@@ -597,7 +597,7 @@ summary.Match  <- function(object, ..., full=FALSE, digits=5)
       return(invisible(NULL))
     }
     
-    if (class(object) != "Match") {
+    if (!inherits(object, "Match")) {
       warning("Object not of class 'Match'")
       return(invisible(NULL))
     }

@@ -216,7 +216,7 @@ summary.Matchby  <- function(object, ..., digits=5)
       return(invisible(NULL))
     }
     
-    if (class(object) != "Matchby") {
+    if (!inherits(object, "Matchby")) {
       warning("Object not of class 'Matchby'")
       return(invisible(NULL))
     }
