@@ -1,3 +1,4 @@
+test_that("Tests replication of Guido Imbens lalonde_exper_04feb2.m file", {
 # Replication of Guido Imbens lalonde_exper_04feb2.m file
 # See http://elsa.berkeley.edu/~imbens/estimators.shtml
 # with balance checks
@@ -8,7 +9,7 @@ suppressWarnings(RNGversion("3.5.3"))
 data(lalonde)
 
 X  <- lalonde$age
-Z  <- X;             
+Z  <- X;
 V  <- lalonde$educ;
 Y  <- lalonde$re78/1000;
 T  <- lalonde$treat;
@@ -19,6 +20,12 @@ res  <- matrix(nrow=1,ncol=3)
 rr  <- Match(Y=Y,Tr=T,X=X,Z=Z,V=V,estimand="ATE",M=1,BiasAdj=FALSE,Weight=1,Var.calc=0,
              sample=TRUE);
 summary(rr)
+
+expect_equal(rr$est[1,1], 1.7851911148121248907)
+expect_equal(rr$se, 0.6867166773225281684)
+expect_equal(all.equal(rr$weights[1:10], c(0.14285714285714284921, 0.14285714285714284921, 0.14285714285714284921,
+                                           0.14285714285714284921, 0.14285714285714284921, 0.14285714285714284921,
+                                           0.14285714285714284921, 0.06250000000000000000, 0.06250000000000000000, 0.06250000000000000000)),TRUE)
 
 res[1,]  <- cbind(1,rr$est,rr$se)
 
@@ -116,5 +123,24 @@ summary(rr)
 res  <- rbind(res,cbind(76,rr$est,rr$se))
 
 cat("\nResults:\n")
-print(res)
+#print(res)
 
+res_test <- data.frame(Num = c(1:16),
+                       est = c(1.78519111481212, 1.71440714918138, 1.53630268121115, 1.72691301785071,
+                               1.70550874262821, 1.59261673326378, 1.71440714918138, 1.63091519500783,
+                               1.71968656670868, 1.36928912506340, 1.36928912506340, 1.71440714918138,
+                               1.71440714918138, 3.14695956932726, 3.16566014738572, 3.50457962724634),
+                       se = c(0.686716677322528, 0.740129179632503, 0.661930423623259, 0.836629632308480,
+                              0.820095935752824, 0.684729829415588, 0.740129179632503, 0.745233606420550,
+                              0.743608513017050, 0.404228086032945, 0.404228086032945, 0.743384632957198,
+                              0.696272433717223, 1.070914907138643, 0.265657268489384, 0.574613885901435))
+
+# Check results with testthat
+for ( i in 1:nrow(res)) {
+  # Check est against saved versions
+  expect_equal(res[i,2], res_test[i,2])
+  # Check SE against saved versions
+  expect_equal(res[i,3], res_test[i,3])
+}
+
+})
