@@ -1155,9 +1155,10 @@ extern "C"
     } /* if (restrict_trigger==1) */
 
     // required for replace=0, to keep track of obs already used
-    long *ReplaceVector;
+    long *ReplaceVector = (long *) malloc(sizeof(long));
     if(replace==0)
       {
+  free(ReplaceVector);    
 	ReplaceVector = (long *) malloc(N*sizeof(long));
       }
 
@@ -1575,10 +1576,7 @@ extern "C"
     /* Free Memory */
     free(S);
     free(order_DistPot);
-    if(replace==0)
-      {
-	free(ReplaceVector);
-      }
+	  free(ReplaceVector);
     
     r = rows(rr);
     c = cols(rr);
@@ -1761,9 +1759,10 @@ extern "C"
     } /* if (restrict_trigger==1) */
 
     // required for replace=0, to keep track of obs already used
-    long *ReplaceVector;
+    long *ReplaceVector = (long *) malloc(sizeof(long));
     if(replace==0)
       {
+  free(ReplaceVector);    
 	ReplaceVector = (long *) malloc(N*sizeof(long));
       }
 
@@ -2204,10 +2203,7 @@ extern "C"
     /* Free Memory */
     //free(S);
     free(order_DistPot);
-    if(replace==0)
-      {
-	free(ReplaceVector);
-      }
+	  free(ReplaceVector);
     
     r = rows(rr);
     c = cols(rr);

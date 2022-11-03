@@ -1,6 +1,6 @@
 Package: Matching
-Version: 4.10-6
-Date: 2022-11-02
+Version: 4.10-8
+Date: 2022-11-03
 Title: Multivariate and Propensity Score Matching with Balance
         Optimization
 Authors@R: c(
