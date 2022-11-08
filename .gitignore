@@ -1,0 +1,4 @@
+*.o
+.Rproj*
+*.so
+!.github
