@@ -1,3 +1,5 @@
+[![R-CMD-check](https://github.com/JasjeetSekhon/Matching/actions/workflows/check-noncontainerized.yaml/badge.svg)](https://github.com/JasjeetSekhon/Matching/actions/workflows/check-noncontainerized.yaml)
+
 ## Matching: Multivariate and Propensity Score Matching Software for Causal Inference
 
 Jasjeet S. Sekhon
