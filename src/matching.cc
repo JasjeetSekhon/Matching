@@ -2283,8 +2283,7 @@ extern "C"
   {
     SEXP ret;
     
-    long N, xvars, M, caliper, restrict_trigger, restrict_nrow, DiagWeightMatrixFlag,
-      sum_caliper_drops=0;
+    long N, xvars, M, caliper, restrict_trigger, restrict_nrow, DiagWeightMatrixFlag;
     double cdd, diff, Distmax, dfoo;
     
     long i, j, k;
@@ -2605,7 +2604,6 @@ extern "C"
 	      {
 		if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		  {
-		    sum_caliper_drops++;
 		    continue;
 		  }
 	      } 
@@ -2673,7 +2671,6 @@ extern "C"
 	    {
 	      if ( (Distmax+cdd) > DBL_MAX_CHECK)
 		{
-		  sum_caliper_drops++;
 		  continue;
 		}
 	    } 

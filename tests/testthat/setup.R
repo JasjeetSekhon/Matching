@@ -1,6 +1,5 @@
 is_mac <- function() {
-  return(grepl('darwin', R.Version()$platform, ignore.case = TRUE) && 
-           (grepl('x86', R.Version()$platform, ignore.case = TRUE) || grepl('aarch', R.Version()$platform, ignore.case = TRUE)))
+  return(grepl('darwin', R.Version()$platform, ignore.case = TRUE) && grepl('x86', R.Version()$platform, ignore.case = TRUE))
 }
 
 skip_if_not_mac <- function() {

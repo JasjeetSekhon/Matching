@@ -126,7 +126,7 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
   Matching for Estimating Causal Effects: A General Multivariate
   Matching Method for Achieving Balance in Observational Studies.''
   \emph{Review of Economics and Statistics}.  95 (3): 932--945.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
 
   Abadie, Alberto.  2002.  ``Bootstrap Tests for Distributional Treatment
   Effects in Instrumental Variable Models.'' \emph{Journal of the
@@ -147,7 +147,7 @@ MatchBalance(formul, data = NULL, match.out = NULL, ks = TRUE,
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.
+  \url{https://www.jsekhon.com}.
 }
 \seealso{
   Also see \code{\link{Match}}, \code{\link{GenMatch}},

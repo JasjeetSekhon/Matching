@@ -8,7 +8,8 @@
  */
 
 #include <R.h>
-#include <R_ext/Applic.h> /* R blas declarations */
+#include <R_ext/Applic.h> /* No longer contains R blas declarations */
+#include <R_ext/BLAS.h> /* New R blas declarations */
 
 #include "cblas.h"
 void cblas_dscal( const int N, const double alpha, double *X, 

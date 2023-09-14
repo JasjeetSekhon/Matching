@@ -1,5 +1,5 @@
 /* Edited by Jasjeet S. Sekhon <jasjeet_sekhon@berkeley.edu> */
-/* HTTP://sekhon.berkeley.edu                                */
+/* https://www.jsekhon.com                             */
 /*                                                           */
 /* April 26, 2013                                            */
 /* get rid of friend-injection for ones, zero, seqa          */

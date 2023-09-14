@@ -20,7 +20,7 @@ BalanceMat <- cbind(age, educ, black, hisp, married, nodegr, u74, u75, re75, re7
 #'BalanceMat'. This is only an example so we want GenMatch to be quick
 #so the population size has been set to be only 16 via the 'pop.size'
 #option. This is *WAY* too small for actual problems.
-#For details see http://sekhon.berkeley.edu/papers/MatchingJSS.pdf.
+#For details see https://www.jsekhon.com.
 #
 genout <- GenMatch(Tr=treat, X=X, BalanceMatrix=BalanceMat, estimand="ATE", M=1,
                    pop.size=16, max.generations=10, wait.generations=1,
@@ -47,7 +47,7 @@ mb <- MatchBalance(treat~age +educ+black+ hisp+ married+ nodegr+ u74+ u75+
 expect_equal(nrow(genout$Weight.matrix), 10)
 expect_equal(ncol(genout$Weight.matrix), 10)
 
-# For more examples see: http://sekhon.berkeley.edu/matching/R.
+# For more examples see: https://www.jsekhon.com
 before_sdiff <- unlist(lapply(mb$BeforeMatching, function(x){return(x$sdiff)}))
 after_sdfiff <- unlist(lapply(mb$AfterMatching, function(x){return(x$sdiff)}))
 

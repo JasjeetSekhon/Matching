@@ -8,7 +8,8 @@
  */
 
 #include <R.h>
-#include <R_ext/Applic.h> /* R blas declarations */
+#include <R_ext/Applic.h> /* No longer contains R blas declarations */
+#include <R_ext/BLAS.h> /* New R blas declarations */
 
 #include "cblas.h"
 void cblas_dgemm(const enum CBLAS_ORDER Order, const enum CBLAS_TRANSPOSE TransA,

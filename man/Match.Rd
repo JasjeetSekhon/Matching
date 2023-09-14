@@ -305,7 +305,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
   Matching for Estimating Causal Effects: A General Multivariate
   Matching Method for Achieving Balance in Observational Studies.''
   \emph{Review of Economics and Statistics}. 95 (3): 932--945.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
 
   Abadie, Alberto and Guido Imbens. 2006.
   ``Large Sample Properties of Matching Estimators for Average
@@ -316,7 +316,7 @@ Match(Y=NULL, Tr, X, Z = X, V = rep(1, length(Y)), estimand = "ATT", M = 1,
 
 }
 \author{Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.
+  \url{https://www.jsekhon.com}.
 }
 \seealso{ Also see \code{\link{summary.Match}},
   \code{\link{GenMatch}},

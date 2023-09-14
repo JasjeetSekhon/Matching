@@ -37,7 +37,7 @@ qqstats(x, y, standardize=TRUE, summary.func)
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.
+  \url{https://www.jsekhon.com}.
 }
 \references{
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
@@ -48,7 +48,7 @@ qqstats(x, y, standardize=TRUE, summary.func)
   Diamond, Alexis and Jasjeet S. Sekhon. Forthcoming. "Genetic Matching for
   Estimating Causal Effects: A General Multivariate Matching Method for
   Achieving Balance in Observational Studies.'' \emph{Review of Economics and Statistics}.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
   }
   \seealso{ Also see \code{\link{ks.boot}},
     \code{\link{balanceUV}}, \code{\link{Match}},

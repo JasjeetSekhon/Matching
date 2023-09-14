@@ -123,7 +123,7 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     below.  And the second being a matrix which contains the variables to
     be balanced---i.e., the \code{BalanceMatrix} the user provided to
     \code{GenMatch}. For an example see
-    \url{http://sekhon.berkeley.edu/matching/R/my_fitfunc.R}.}
+    \url{https://www.jsekhon.com}.}
   \item{MemoryMatrix}{
     This variable controls if \code{\link[rgenoud]{genoud}} sets up a memory matrix.  Such a
     matrix ensures that \code{\link[rgenoud]{genoud}} will request the fitness evaluation
@@ -321,9 +321,9 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
     cluster object to \code{GenMatch}. For an example of how to manually
     setup up a cluster with a direct call to
     \code{\link[parallel]{makeCluster}} see
-    \url{http://sekhon.berkeley.edu/matching/R/cluster_manual.R}.  For
+    \url{https://www.jsekhon.com}.  For
     an example of how to get around a firewall by ssh tunneling see:
-    \url{http://sekhon.berkeley.edu/matching/R/cluster_manual_tunnel.R}.}
+    \url{https://www.jsekhon.com}.}
     \item{balance}{This logical flag controls if load balancing is done
     across the cluster.  Load balancing can result in better cluster
     utilization; however, increased communication can reduce
@@ -369,16 +369,16 @@ GenMatch(Tr, X, BalanceMatrix=X, estimand="ATT", M=1, weights=NULL,
   Matching for Estimating Causal Effects: A General Multivariate
   Matching Method for Achieving Balance in Observational Studies.''
   \emph{Review of Economics and Statistics}.  95 (3): 932--945.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
 
   Sekhon, Jasjeet Singh and Walter R. Mebane, Jr. 1998.  "Genetic
   Optimization Using Derivatives: Theory and Application to Nonlinear
   Models.'' \emph{Political Analysis}, 7: 187-210.
-  \url{http://sekhon.berkeley.edu/genoud/genoud.pdf} 
+  \url{https://www.jsekhon.com} 
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.  
+  \url{https://www.jsekhon.com}.  
 }
 \seealso{ Also see \code{\link{Match}}, \code{\link{summary.Match}},
   \code{\link{MatchBalance}}, \code{\link[rgenoud]{genoud}},
@@ -402,7 +402,7 @@ BalanceMat <- cbind(age, educ, black, hisp, married, nodegr, u74, u75, re75, re7
 #'BalanceMat'. This is only an example so we want GenMatch to be quick
 #so the population size has been set to be only 16 via the 'pop.size'
 #option. This is *WAY* too small for actual problems.
-#For details see http://sekhon.berkeley.edu/papers/MatchingJSS.pdf.
+#For details see https://www.jsekhon.com.
 #
 genout <- GenMatch(Tr=treat, X=X, BalanceMatrix=BalanceMat, estimand="ATE", M=1,
                    pop.size=16, max.generations=10, wait.generations=1)
@@ -424,7 +424,7 @@ mb <- MatchBalance(treat~age +educ+black+ hisp+ married+ nodegr+ u74+ u75+
                    re75+ re74+ I(re74*re75),
                    match.out=mout, nboots=500)
 
-# For more examples see: http://sekhon.berkeley.edu/matching/R.
+# For more examples see: https://www.jsekhon.com.
 }
 \keyword{nonparametric}
 

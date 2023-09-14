@@ -33,7 +33,7 @@ ks.boot(Tr, Co, nboots=1000, alternative = c("two.sided","less","greater"),
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.
+  \url{https://www.jsekhon.com}.
 }
 \references{
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
@@ -45,7 +45,7 @@ ks.boot(Tr, Co, nboots=1000, alternative = c("two.sided","less","greater"),
   Estimating Causal Effects: A General Multivariate Matching Method for
   Achieving Balance in Observational Studies.'' \emph{Review of
   Economics and Statistics}.  95 (3): 932--945.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
 
   Abadie, Alberto.  2002.  ``Bootstrap Tests for Distributional Treatment
   Effects in Instrumental Variable Models.'' \emph{Journal of the

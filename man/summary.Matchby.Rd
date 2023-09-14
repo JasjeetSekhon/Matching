@@ -17,7 +17,7 @@
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.  
+  \url{https://www.jsekhon.com}.  
 }
 \seealso{ Also see \code{\link{Matchby}},  \code{\link{Match}}, \code{\link{GenMatch}},
   \code{\link{MatchBalance}}, 

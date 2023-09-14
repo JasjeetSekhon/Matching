@@ -364,7 +364,7 @@ GenMatch <- function(Tr, X, BalanceMatrix=X, estimand="ATT", M=1,
     #print warning if pop.size, max.generations and wait.generations are all set to their original values
     if(pop.size==100 & max.generations==100 & wait.generations==4)
       {
-        warning("The key tuning parameters for optimization were are all left at their default values.  The 'pop.size' option in particular should probably be increased for optimal results.  For details please see the help page and http://sekhon.berkeley.edu/papers/MatchingJSS.pdf")
+        warning("The key tuning parameters for optimization were are all left at their default values.  The 'pop.size' option in particular should probably be increased for optimal results.  For details please see the help page and https://www.jsekhon.com")
       }
 
     #loss function

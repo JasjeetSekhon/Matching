@@ -1,5 +1,5 @@
 # Jasjeet S. Sekhon <sekhon@berkeley.edu>
-# HTTP://sekhon.berkeley.edu/
+# https://www.jsekhon.com
 # UC Berkeley
 
 # Match(): function to estimate treatments using a matching estimator.
@@ -3039,7 +3039,7 @@ VarCalcMatchC <- function(N, xvars, Var.calc, cdd, caliperflag, ww, Tr, Xmod, Ca
   BuildDate <- packageDescription("Matching", lib.loc = MatchLib)$Date
 
   foo <- paste("## \n##  Matching (Version ", version, ", Build Date: ", BuildDate, ")\n", 
-               "##  See http://sekhon.berkeley.edu/matching for additional documentation.\n",
+               "##  See https://www.jsekhon.com for additional documentation.\n",
                "##  Please cite software as:\n",
                "##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching\n",
                "##   Software with Automated Balance Optimization: The Matching package for R.''\n",

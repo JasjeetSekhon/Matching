@@ -76,7 +76,7 @@ balanceUV(Tr, Co, weights = rep(1, length(Co)), exact = FALSE, ks=FALSE,
 }
 \author{
   Jasjeet S. Sekhon, UC Berkeley, \email{sekhon@berkeley.edu},
-  \url{http://sekhon.berkeley.edu/}.
+  \url{https://www.jsekhon.com}.
 }
 \references{
   Sekhon, Jasjeet S. 2011.  "Multivariate and Propensity Score
@@ -88,7 +88,7 @@ balanceUV(Tr, Co, weights = rep(1, length(Co)), exact = FALSE, ks=FALSE,
   Matching for Estimating Causal Effects: A General Multivariate
   Matching Method for Achieving Balance in Observational Studies.''
   \emph{Review of Economics and Statistics}.  95 (3): 932--945.
-  \url{http://sekhon.berkeley.edu/papers/GenMatch.pdf}
+  \url{https://www.jsekhon.com}
 
   Rosenbaum, Paul R. and Donald B. Rubin. 1985. ``Constructing a Control
   Group Using Multivariate Matched Sampling Methods That Incorporate the
