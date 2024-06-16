@@ -1,4 +1,5 @@
 test_that("Tests GenMatch", {
+skip_if_not_installed("rgenoud")
 suppressMessages(library(rgenoud))
 suppressMessages(library(Matching))
 suppressWarnings(RNGversion("3.5.3"))
