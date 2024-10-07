@@ -199,9 +199,9 @@ extern "C"
 
     SumFoo = 0;//Initialize sumFoo to make sure it is initialized when we branch
     
-    N = asInteger(I_N);
-    All = asInteger(I_All);
-    length = asInteger(I_length);
+    N = Rf_asInteger(I_N);
+    All = Rf_asInteger(I_All);
+    length = Rf_asInteger(I_length);
 
     // In vars
     Matrix Tr = Matrix(N, 1);
@@ -300,7 +300,7 @@ extern "C"
       }// end of master N loop
 
 	    
-    PROTECT(ret=allocMatrix(REALSXP, N, 3));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, N, 3));
     
     // stack up cbind(YCAUS, Kcount, KKcount)
     k = 0;
@@ -374,11 +374,11 @@ extern "C"
     
     long i, j, k;
     
-    N = asInteger(I_N);
-    xvars = asInteger(I_xvars);
-    All = asInteger(I_All);
-    M = asInteger(I_M);
-    cdd = asReal(I_cdd);
+    N = Rf_asInteger(I_N);
+    xvars = Rf_asInteger(I_xvars);
+    All = Rf_asInteger(I_All);
+    M = Rf_asInteger(I_M);
+    cdd = Rf_asReal(I_cdd);
     
     Matrix ww = Matrix(xvars, xvars);
     Matrix Tr = Matrix(N, 1);
@@ -534,7 +534,7 @@ extern "C"
 	      {
 		Rprintf("Increasing memory because of ties: allocating a matrix of size 3 times %d doubles.\n", NM);
 		Rprintf("I would be faster with the ties=FALSE option.\n");
-		warning("Increasing memory because of ties.  I would be faster with the ties=FALSE option.");
+		Rf_warning("Increasing memory because of ties.  I would be faster with the ties=FALSE option.");
 	      }
 	    
 	    int OldMatchCount = MatchCount - (int) Mi;
@@ -653,7 +653,7 @@ extern "C"
       }
     */
     
-    PROTECT(ret=allocMatrix(REALSXP, MatchCount, 3));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, MatchCount, 3));
     /* Loop through the data and display the same in matrix format */
     k = 0;
     for( j = 0; j < MatchCount; j++, k++)
@@ -726,11 +726,11 @@ extern "C"
     
     long i, j, k;
     
-    N = asInteger(I_N);
-    xvars = asInteger(I_xvars);
-    All = asInteger(I_All);
-    M = asInteger(I_M);
-    cdd = asReal(I_cdd);
+    N = Rf_asInteger(I_N);
+    xvars = Rf_asInteger(I_xvars);
+    All = Rf_asInteger(I_All);
+    M = Rf_asInteger(I_M);
+    cdd = Rf_asReal(I_cdd);
     
     Matrix ww = Matrix(xvars, xvars);
 
@@ -969,7 +969,7 @@ extern "C"
     free(order_DistPot);
 
     i = I.rowsize;
-    PROTECT(ret=allocMatrix(REALSXP, i, 3));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, i, 3));
     /* Loop through the data and display the same in matrix format */
     k = 0;
     for( j = 0; j < i; j++, k++)
@@ -1061,17 +1061,17 @@ extern "C"
     
     long i, j, k, r, c;
     
-    N = asInteger(I_N);
-    xvars = asInteger(I_xvars);
-    All = asInteger(I_All);
-    M = asInteger(I_M);
-    cdd = asReal(I_cdd);
-    caliper = (long) asReal(I_caliper);
-    replace = asInteger(I_replace);
-    ties = asInteger(I_ties);
-    restrict_nrow = asInteger(I_restrict_nrow);
-    restrict_trigger = asInteger(I_restrict_trigger);
-    DiagWeightMatrixFlag = asInteger(I_DiagWeightMatrixFlag);
+    N = Rf_asInteger(I_N);
+    xvars = Rf_asInteger(I_xvars);
+    All = Rf_asInteger(I_All);
+    M = Rf_asInteger(I_M);
+    cdd = Rf_asReal(I_cdd);
+    caliper = (long) Rf_asReal(I_caliper);
+    replace = Rf_asInteger(I_replace);
+    ties = Rf_asInteger(I_ties);
+    restrict_nrow = Rf_asInteger(I_restrict_nrow);
+    restrict_trigger = Rf_asInteger(I_restrict_trigger);
+    DiagWeightMatrixFlag = Rf_asInteger(I_DiagWeightMatrixFlag);
     
     Matrix ww = Matrix(xvars, xvars);
     Matrix Tr = Matrix(N, 1);
@@ -1581,7 +1581,7 @@ extern "C"
     r = rows(rr);
     c = cols(rr);
     
-    PROTECT(ret=allocMatrix(REALSXP, r, c));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, r, c));
     /* Loop through the data and display the same in matrix format */
     k = 0;
     for( i = 0; i < c; i++ )
@@ -1671,17 +1671,17 @@ extern "C"
     
     long i, j, k, r, c;
     
-    N = asInteger(I_N);
-    xvars = asInteger(I_xvars);
-    All = asInteger(I_All);
-    M = asInteger(I_M);
-    cdd = asReal(I_cdd);
-    caliper = (long) asReal(I_caliper);
-    replace = asInteger(I_replace);
-    ties = asInteger(I_ties);
-    restrict_nrow = asInteger(I_restrict_nrow);
-    restrict_trigger = asInteger(I_restrict_trigger);
-    DiagWeightMatrixFlag = asInteger(I_DiagWeightMatrixFlag);
+    N = Rf_asInteger(I_N);
+    xvars = Rf_asInteger(I_xvars);
+    All = Rf_asInteger(I_All);
+    M = Rf_asInteger(I_M);
+    cdd = Rf_asReal(I_cdd);
+    caliper = (long) Rf_asReal(I_caliper);
+    replace = Rf_asInteger(I_replace);
+    ties = Rf_asInteger(I_ties);
+    restrict_nrow = Rf_asInteger(I_restrict_nrow);
+    restrict_trigger = Rf_asInteger(I_restrict_trigger);
+    DiagWeightMatrixFlag = Rf_asInteger(I_DiagWeightMatrixFlag);
     
     Matrix ww = Matrix(xvars, xvars);
     Matrix Tr = Matrix(N, 1);
@@ -2072,7 +2072,7 @@ extern "C"
 		  {
 		    Rprintf("Increasing memory because of ties: allocating a matrix of size 3 times %d doubles.\n", NM);
 		    Rprintf("I would be faster with the ties=FALSE option.\n");
-		    warning("Increasing memory because of ties.  I would be faster with the ties=FALSE option.");
+		    Rf_warning("Increasing memory because of ties.  I would be faster with the ties=FALSE option.");
 		  }
 		else 
 		  {
@@ -2208,7 +2208,7 @@ extern "C"
     r = rows(rr);
     c = cols(rr);
 
-    PROTECT(ret=allocMatrix(REALSXP, r, c));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, r, c));
     /* Loop through the data and display the same in matrix format */
     k = 0;
     for( i = 0; i < c; i++ )
@@ -2288,14 +2288,14 @@ extern "C"
     
     long i, j, k;
     
-    N = asInteger(I_N);
-    xvars = asInteger(I_xvars);
-    M = asInteger(I_M);
-    cdd = asReal(I_cdd);
-    caliper = (long) asReal(I_caliper);
-    restrict_nrow = asInteger(I_restrict_nrow);
-    restrict_trigger = asInteger(I_restrict_trigger);
-    DiagWeightMatrixFlag = asInteger(I_DiagWeightMatrixFlag);
+    N = Rf_asInteger(I_N);
+    xvars = Rf_asInteger(I_xvars);
+    M = Rf_asInteger(I_M);
+    cdd = Rf_asReal(I_cdd);
+    caliper = (long) Rf_asReal(I_caliper);
+    restrict_nrow = Rf_asInteger(I_restrict_nrow);
+    restrict_trigger = Rf_asInteger(I_restrict_trigger);
+    DiagWeightMatrixFlag = Rf_asInteger(I_DiagWeightMatrixFlag);
     
     Matrix ww = Matrix(xvars, xvars);
     Matrix Tr = Matrix(N, 1);
@@ -2379,7 +2379,7 @@ extern "C"
       }
 
     Matrix weight, weightPot, tt, weightPot_sort, weightPot_sum, foo1, foo2;
-    int weightFlag = asInteger(I_weightFlag);
+    int weightFlag = Rf_asInteger(I_weightFlag);
     if(weightFlag==1)
       {
 	weight = Matrix::zeros(N, 1);
@@ -2705,7 +2705,7 @@ extern "C"
     free(S);
     free(order_DistPot);
     
-    PROTECT(ret=allocMatrix(REALSXP, N, 1));
+    PROTECT(ret=Rf_allocMatrix(REALSXP, N, 1));
     /* Loop through the data and display the same in matrix format */
     for( j = 0; j < N; j++ )
       {
