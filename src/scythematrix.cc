@@ -79,7 +79,7 @@ namespace SCYTHE {
   // #ifdef __NATE__
   Matrix::Matrix (const int& rows, const int& cols) {
     if (rows < 1 || cols < 1) {
-      error("Improper row or column dimension in Matrix constructor");
+      Rf_error("Improper row or column dimension in Matrix constructor");
     }
     rowsize = rows;    // assign Matrix rowsize
     colsize = cols;    // assign Matrix colsize 
@@ -101,7 +101,7 @@ namespace SCYTHE {
     Matrix::Matrix (const double *inputarray, const int& rows, const int& cols)
     {
 	if (rows < 1 || cols < 1) {
-	  error("Improper row or column dimension in Matrix constructor");
+	  Rf_error("Improper row or column dimension in Matrix constructor");
 	}
 	rowsize = rows;    // assign Matrix rowsize
 	colsize = cols;    // assign Matrix colsize
@@ -177,7 +177,7 @@ namespace SCYTHE {
     Matrix::operator () (const int& i, const all_elements& a)
     {
 	if (i >= rowsize || i < 0) {
-	  error("Index out of range in () operator");
+	  Rf_error("Index out of range in () operator");
 	}
 	
 	int newrowsize = 1;
@@ -208,7 +208,7 @@ namespace SCYTHE {
     Matrix::operator () (const all_elements& a, const int& j)
     {
 	if (j >= colsize || j < 0) {
-	  error("Index out of range in () operator");
+	  Rf_error("Index out of range in () operator");
 	}
 	
 	int newrowsize = rowsize;
@@ -239,11 +239,11 @@ namespace SCYTHE {
     {
 	
 	if (i >= rowsize || i < 0) {
-	  error("Index out of range in () operator");
+	  Rf_error("Index out of range in () operator");
 	}
 	
 	if (J.colsize != 1 && J.rowsize != 1) {
-	  error("Either rows or cols of J != 1 in () operator");
+	  Rf_error("Either rows or cols of J != 1 in () operator");
 	}
 	
 	int newrowsize = 1;
@@ -254,7 +254,7 @@ namespace SCYTHE {
 	for (int j = 0; j < newcolsize; ++j) {
 	    int index = static_cast < int >(J.data[j]);
 	    if (index >= colsize || index < 0) {
-		error("Index out of range in () operator");
+	        Rf_error("Index out of range in () operator");
 	    }
 	    index = index + i * colsize;
 	    newdata.data[j] = data[index];
@@ -279,11 +279,11 @@ namespace SCYTHE {
     {
 	
 	if (j >= colsize || j < 0) {
-	  error("Index out of range in () operator");
+	  Rf_error("Index out of range in () operator");
 	}
 	
 	if (I.colsize != 1 && I.rowsize != 1) {
-	  error("Either rows or cols of I != 1 in () operator");
+	  Rf_error("Either rows or cols of I != 1 in () operator");
 	}
 	
 	int newrowsize = I.size;
@@ -293,7 +293,7 @@ namespace SCYTHE {
 	for (int i = 0; i < newrowsize; ++i) {
 	    int index = static_cast < int >(I.data[i]);
 	    if (index >= rowsize || index < 0) {
-	      error("Index out of range in () operator");
+	      Rf_error("Index out of range in () operator");
 	    }
 	    index = j + index * colsize;
 	    newdata.data[i] = data[index];
@@ -321,16 +321,16 @@ namespace SCYTHE {
     Matrix 
     Matrix::operator () (const Matrix& I, const Matrix& J){
 	if (I.colsize != 1 && I.rowsize != 1) {
-	  error("Either Rows or Cols of I != 1 in () operator");
+	  Rf_error("Either Rows or Cols of I != 1 in () operator");
 	}
 	if (J.colsize != 1 && J.rowsize != 1) {
-	  error("Either rows or cols of J != 1 in () operator");
+	  Rf_error("Either rows or cols of J != 1 in () operator");
 	}
 	if (I.size > rowsize){
-	  error("size(I) > rowsize of Matrix in Matrix operator ()");
+	  Rf_error("size(I) > rowsize of Matrix in Matrix operator ()");
 	}
 	if (J.size > colsize){
-	  error("size(J) > colsize of Matrix in Matrix operator ()");
+	  Rf_error("size(J) > colsize of Matrix in Matrix operator ()");
 	}
 	
 	int place = 0;
@@ -342,10 +342,10 @@ namespace SCYTHE {
 		indexi = static_cast < int > (I.data[i]);
 		indexj = static_cast < int > (J.data[j]);
 		if (indexi >= rowsize || indexi < 0) {
-		  error("Row index out of range in () operator");
+		  Rf_error("Row index out of range in () operator");
 		}
 		if (indexj >= colsize || indexj < 0) {
-		  error("Column index out of range in () operator");
+		  Rf_error("Column index out of range in () operator");
 		}
 		newdata.data[place] = data[indexi * colsize + indexj];
 		place++;
@@ -1038,7 +1038,7 @@ Matrix t (const Matrix & old_matrix)
   Matrix Matrix::ones (const int& rows, const int& cols)
  {
    if (rows < 1 || cols < 1) {
-     error("improper row or column dimension in ones()");
+     Rf_error("improper row or column dimension in ones()");
    }
    Matrix newdata(rows, cols);
    int size = rows * cols;
@@ -1061,7 +1061,7 @@ Matrix t (const Matrix & old_matrix)
   Matrix Matrix::zeros (const int& rows, const int& cols)
 {
   if (rows < 1 || cols < 1) {
-    error("Error 0018: improper row or column dimension in ones()");
+    Rf_error("Error 0018: improper row or column dimension in ones()");
   }
   Matrix temp(rows, cols); // ctor zeros data
   return temp;
@@ -1197,10 +1197,10 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
 	Matrix PA = A;
 	Matrix p = pp;
 	if (p.colsize != 1){
-	  error("Vector p not a column vector in row_interchange()");
+	  Rf_error("Vector p not a column vector in row_interchange()");
 	}
 	if ( (p.rowsize +1) != A.rowsize){
-	  error("Matrices A and p not of consistent sizes in row_interchange()");
+	  Rf_error("Matrices A and p not of consistent sizes in row_interchange()");
 	}
 	
 	for (int i=0; i<(A.rowsize-1); ++i){
@@ -1228,7 +1228,7 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
     Matrix inv (const Matrix & AA)
     {
 	if (AA.rowsize != AA.colsize){
-	  error("Matrix A not square in SCYTHE::inv()");
+	  Rf_error("Matrix A not square in SCYTHE::inv()");
 	}
 	
 	Matrix b = Matrix (AA.rowsize, 1); 
@@ -1255,7 +1255,7 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
 		}
 		
 		if(A(pivot,k) == 0.0){
-		  error("Matrix A is singular in SCYTHE::inv()");
+		  Rf_error("Matrix A is singular in SCYTHE::inv()");
 		}
 		
 		// permute 
@@ -1334,7 +1334,7 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
 	Matrix A = AA;
 	
 	if (A.rowsize != A.colsize){
-	  error("Matrix A not square in SCYTHE::det()");
+	  Rf_error("Matrix A not square in SCYTHE::det()");
 	}
 	
 	if(A.rowsize == 1)
@@ -1390,7 +1390,7 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
     Matrix cbind (const Matrix & A, const Matrix & B)
     {
 	if (A.rowsize != B.rowsize) {
-	  error("Matrices A and B do not have some number of rows in SCYTHE::cbind()");
+	  Rf_error("Matrices A and B do not have some number of rows in SCYTHE::cbind()");
 	}
 	
 	int totalcols = A.colsize + B.colsize;
@@ -1419,7 +1419,7 @@ Matrix Matrix::seqa (const double& start, const double& incr, const int& size)
     Matrix rbind (const Matrix & A, const Matrix & B)
     {
 	if (A.colsize != B.colsize) {
-	  error("Matrices A and B do not have some number of cols in SCYTHE::rbind()");
+	  Rf_error("Matrices A and B do not have some number of cols in SCYTHE::rbind()");
 	}
 	
 	int totalrows = A.rowsize + B.rowsize;
@@ -1793,7 +1793,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix order(const Matrix& A){
 	if (A.colsize != 1){
-	  error("Matrix A not a column vector in SCYTHE::order()");
+	  Rf_error("Matrix A not a column vector in SCYTHE::order()");
 	}
 	Matrix newdata(A.rowsize, 1);
 	
@@ -1817,12 +1817,12 @@ Matrix sumc (const Matrix & A)
 	
 	// check to see if rowsize matches  
 	if (A.rowsize != e.rowsize){
-	  error("Matrices not conformable in SCYTHE::selif()");
+	  Rf_error("Matrices not conformable in SCYTHE::selif()");
 	}
 	
 	// check to see if e is a column vector
 	if (e.colsize > 1){
-	  error("Not a column vector in SCYTHE::selif()");
+	  Rf_error("Not a column vector in SCYTHE::selif()");
 	}
 	
 	// loop to check if e contains binary data, and count number
@@ -1830,7 +1830,7 @@ Matrix sumc (const Matrix & A)
 	int N = 0;
 	for (int i=0; i<e.rowsize; ++i){
 	    if (e.data[i] != 0 && e.data[i] != 1){
-	      error("Vector contains non binary data in SCYTHE::selif()");
+	      Rf_error("Vector contains non binary data in SCYTHE::selif()");
 	    }
 	    if (e.data[i] == 1) {
 		N += 1;
@@ -1916,7 +1916,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix reshape(const Matrix& A, const int r, const int c){
 	if (A.size != r*c){
-	  error("Input dimensions to SCYTHE::reshape() not consistent with size of input Matrix");
+	  Rf_error("Input dimensions to SCYTHE::reshape() not consistent with size of input Matrix");
 	}
 	Matrix temp = Matrix(A.data, r, c);
 	return temp;
@@ -1931,7 +1931,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix vech(const Matrix& A){
 	if (A.rowsize != A.colsize){
-	  error("Input Matrix not square in SCYTHE::vech()");
+	  Rf_error("Input Matrix not square in SCYTHE::vech()");
 	}
 	
 	int newsize = static_cast<int>(0.5*(A.size - A.rowsize) + A.rowsize);
@@ -1958,7 +1958,7 @@ Matrix sumc (const Matrix & A)
     Matrix xpnd(const Matrix& A){
 	double newrowsize_d = -.5 + .5*std::sqrt(1+8*A.size);
 	if (fmod(newrowsize_d,1.0) != 0.0){
-	    error("Not possible to make square Matrix out of input Matrix to SCYTHE::xpnd()");
+	    Rf_error("Not possible to make square Matrix out of input Matrix to SCYTHE::xpnd()");
 	}
 	int newrowsize = static_cast<int>(newrowsize_d);
 	Matrix newdata(newrowsize, newrowsize);
@@ -1982,7 +1982,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix diag(const Matrix& A){
 	if (A.rowsize != A.colsize){
-	  error("Matrix is not square in SCYTHE::diag()");
+	  Rf_error("Matrix is not square in SCYTHE::diag()");
 	}
 	Matrix newdata(A.rowsize, 1);
 	for (int i=0; i<A.rowsize; ++i){
@@ -2008,7 +2008,7 @@ Matrix sumc (const Matrix & A)
 		}
 		return prod;
 	    } else {
-	      error("A*B and C not conformable in SCYTHE::gaxpy()");
+	      Rf_error("A*B and C not conformable in SCYTHE::gaxpy()");
 	    }
 	} else if (B.rowsize == 1 && B.colsize == 1) {
 	    // Case 2: A is n x k and B is 1 x 1
@@ -2019,11 +2019,11 @@ Matrix sumc (const Matrix & A)
 		}
 		return prod;
 	    } else {
-	      error("A*B and C not conformable in SCYTHE::gaxpy()");
+	      Rf_error("A*B and C not conformable in SCYTHE::gaxpy()");
 	    }
 	} else if (A.colsize != B.rowsize) {
 	    // Case 3: A is n x k and B is m x j (m !=j)
-	  error("Matrices not conformable for multiplication in SCYTHE::gaxpy()");
+	  Rf_error("Matrices not conformable for multiplication in SCYTHE::gaxpy()");
 	} else if (A.rowsize == C.rowsize && B.colsize == C.colsize){
 	    // Case 4: A is n x k and B is k x j
 	  Matrix newdata(A.rowsize, B.colsize);
@@ -2039,7 +2039,7 @@ Matrix sumc (const Matrix & A)
 	    
 	    return newdata;
 	} else {
-	  error("A*B and C not conformable in SCYTHE::gaxpy()");
+	  Rf_error("A*B and C not conformable in SCYTHE::gaxpy()");
 	}
     }
     
@@ -2130,7 +2130,7 @@ Matrix sumc (const Matrix & A)
 	    return sum;
 	} else if (A.rowsize != B.rowsize || A.colsize != B.colsize) {
 	    // Case 3: A is n x k and B is m x j (n != m or k != m)
-	  error("Matrices not conformable for addition");
+	  Rf_error("Matrices not conformable for addition");
 	} else {
 	    // Case 4: A is n x k and B is also n x k
   	  Matrix sum(A.rowsize, A.colsize);
@@ -2197,7 +2197,7 @@ Matrix sumc (const Matrix & A)
 	    return sum;
 	} else if (A.rowsize != B.rowsize || A.colsize != B.colsize) {
 	    // Case 3: A is n x k and B is m x j (n != m or k != m)
-	  error("Matrices not conformable for subtraction");
+	  Rf_error("Matrices not conformable for subtraction");
 	} else {
 	    // Case 4: A is n x k and B is also n x k
  	  Matrix sum(A.rowsize, A.colsize);
@@ -2264,7 +2264,7 @@ Matrix sumc (const Matrix & A)
 	    return prod;
 	} else if (A.colsize != B.rowsize) {
 	    // Case 3: A is n x k and B is m x j (m !=j)
-	  error("Matrices not conformable for multiplication");
+	  Rf_error("Matrices not conformable for multiplication");
 	} else {
 	    // Case 4: A is n x k and B is k x j
 	  Matrix newdata(A.rowsize, B.colsize);
@@ -2337,7 +2337,7 @@ Matrix sumc (const Matrix & A)
 	    return quot;
 	} else if (A.rowsize != B.rowsize || A.colsize != B.colsize) {
 	    // Case 3: A is n x k and B is m x j (n != m or k != m)
-	  error("Matrices not conformable for division");
+	  Rf_error("Matrices not conformable for division");
 	} else {
 	    // Case 4: A is n x k and B is also n x k
 	  Matrix quot(A.rowsize, A.colsize);
@@ -2441,7 +2441,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix operator >> (const Matrix& A, const Matrix& B){
 	if (A.rowsize != B.rowsize && A.colsize != B.colsize && (B.size > 1)){
-	  error("Matrices not conformable for >> operator");
+	  Rf_error("Matrices not conformable for >> operator");
 	}
 	
 	if (A.rowsize == B.rowsize && A.colsize == B.colsize){
@@ -2479,7 +2479,7 @@ Matrix sumc (const Matrix & A)
 	    }
 	    return newdata;  
 	} else {
-	  error("Matrices not conformable for >> operator");
+	  Rf_error("Matrices not conformable for >> operator");
 	}  
     }
     
@@ -2505,7 +2505,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix operator << (const Matrix& A, const Matrix& B){
 	if (A.rowsize != B.rowsize && A.colsize != B.colsize && (B.size > 1)){
-	  error("Matrices not conformable for << operator");
+	  Rf_error("Matrices not conformable for << operator");
 	}
 	
 	if (A.rowsize == B.rowsize && A.colsize == B.colsize){
@@ -2545,7 +2545,7 @@ Matrix sumc (const Matrix & A)
 	}
 	
 	else {
-	  error("Matrices not conformable for << operator");
+	  Rf_error("Matrices not conformable for << operator");
 	}  
     }
     
@@ -2573,7 +2573,7 @@ Matrix sumc (const Matrix & A)
  */
     Matrix operator ^= (const Matrix& A, const Matrix& B){
 	if (A.rowsize != B.rowsize && A.colsize != B.colsize && (B.size > 1)){
-	  error("Matrices not conformable for ^= operator");
+	  Rf_error("Matrices not conformable for ^= operator");
 	}
 	
 	if (A.rowsize == B.rowsize && A.colsize == B.colsize){
@@ -2613,7 +2613,7 @@ Matrix sumc (const Matrix & A)
 	}
 	
 	else {
-	  error("Matrices not conformable for ^= operator");
+	  Rf_error("Matrices not conformable for ^= operator");
 	}  
     }
     

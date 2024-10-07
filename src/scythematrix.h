@@ -163,7 +163,7 @@ public:
 
   inline double &operator[] (const int& i) {
 		if (i >= size || i < 0) {
-		  error("Index out of range in [] operator");
+		  Rf_error("Index out of range in [] operator");
 		}
 		return (data[i]);
   }
@@ -181,7 +181,7 @@ public:
 
   inline double &operator () (const int& i, const int& j) {
 		if (rowsize < i || colsize < j || i < 0 || j < 0) {
-		  error("Index out of range in () operator");
+		  Rf_error("Index out of range in () operator");
 		}
 		return data[i * colsize + j];
 	}
